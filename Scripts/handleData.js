@@ -381,20 +381,32 @@ function chiTietKhoaHoc(obj) {
     }
     scoreRate.sort()
     scoreRate.reverse(); //sắp xếp id theo thứ tự scoreRate giảm dần
-    for (sroceIndex = 0; sroceIndex < scoreRate.length; sroceIndex++) {
         for (varDoc of arrResult) {
-
-            if (varDoc[1] == scoreRate[sroceIndex]) {
-                idKeyWords.push(varDoc[0]);
+            for (sroceIndex = 0; sroceIndex < scoreRate.length; sroceIndex++) {
+                if (varDoc[1] == scoreRate[sroceIndex]) {
+                    idKeyWords.push(varDoc[0]);
+                    
+                }
             }
         }
+    console.log(scoreRate);
+    console.log(arrResult);
+  //Loai bo phan tu trung lap
+function unique(arr) {
+    var newArr = [];
+    for (var i = 0; i < arr.length; i++) {
+        if (newArr.indexOf(arr[i]) === -1) {
+            newArr.push(arr[i]);
+        }
     }
-    console.log(idKeyWords);
+    return newArr;
+}
+console.log(unique(idKeyWords));
     //console.log(dataJson.coursera.learn[khoaHoc[0]].about);
 
     //so sánh id của key_words.json với id của export_...
 
-    for (id of idKeyWords) {
+    for (id of unique(idKeyWords)) {
         var idInt = parseInt(id);
         if (idInt <= 618) {
             document.getElementById('relatedCourse').innerHTML += '<div class="column" id="learn"><div  class="column-content-modal"><img  src="' + dataJson.coursera.learn[khoaHoc[idInt]].image + '" alt="Image document" />' +
