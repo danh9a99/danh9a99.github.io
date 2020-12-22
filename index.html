@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My ASP.NET Application</title>
+    <link rel="stylesheet" href="Content/font-awesome/css/font-awesome.min.css">
+    <link href="Content/bootstrap.min.css" rel="stylesheet"/>
+    <link href="Content/sidebar.css" rel="stylesheet" />
+    <link href="Content/menubar.css" rel="stylesheet" />
+    <link href="Content/danhcss.css" rel="stylesheet" />
+    <style>
+            @keyframes placeHolderShimmer{
+    0%{
+        background-position: -468px 0
+    }
+    100%{
+        background-position: 468px 0
+    }
+}
+
+.linear-background {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 1000px 104px;
+    
+    position: relative;
+    overflow: hidden;
+}
+.inter-draw{
+  background: #FFF;
+  width: 100%;
+  height: 100px;
+  position: absolute;
+  top: 100px;
+}
+.inter-right--top{
+  background: #FFF;
+  width: 100%;
+  height: 20px;
+  position: absolute;
+  top: 20px;
+  left: 100px;
+}
+.inter-right--bottom{
+  background: #FFF;
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  top: 60px;
+  left: 100px;
+}
+.inter-crop{
+  background: #FFF;
+  width: 20px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 100px;
+}
+        .isHidden {
+            visibility: visible;
+        }
+
+        .modal-content {
+            width: 1000px;
+        }
+
+        .modal-body p {
+            max-height: calc(100vh - 210px);
+            word-wrap: break-word;
+            overflow-y: auto;
+        }
+
+        .bg {
+            /* The image used */
+            /*background-image: url("img_girl.jpg");*/
+            background-color: antiquewhite;
+            /* Full height */
+            height: 100%;
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .popup {
+            position: relative;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+            /* The actual popup */
+            .popup .popuptext {
+                visibility: hidden;
+                width:650px;
+                background-color: #555;
+                color: #fff;
+                text-align: center;
+                border-radius: 6px;
+                padding: 8px 0;
+                position: absolute;
+                z-index: 1;
+                bottom: 125%;
+                left: 20%;
+                margin-left: -80px;
+            }
+
+                /* Popup arrow */
+                .popup .popuptext::after {
+                    content: "";
+                    position: absolute;
+                    top: 100%;
+                    left: 50%;
+                    margin-left: -5px;
+                    border-width: 5px;
+                    border-style: solid;
+                    border-color: #555 transparent transparent transparent;
+                }
+
+            /* Toggle this class - hide and show the popup */
+            .popup .show {
+                visibility: visible;
+                -webkit-animation: fadeIn 1s;
+                animation: fadeIn 1s;
+            }
+
+        /* Add animation (fade in the popup) */
+        @-webkit-keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main__content__header">
+        <div class="Navbar">
+            <a href="/">
+                <div class="Navbar__logo">
+                    <img src="/_next/static/images/damsanx_logo-c8c2bc357e04a9520406470c2c804689.png" alt="logo">
+                </div>
+            </a>
+            <ul class="Navbar__nav">
+                <li class=""><a href="/">Trang chủ</a></li>
+                <li class=""><a href="/ranking?typeRanking=best_quality&amp;page=1">Xếp Hạng</a></li>
+                <li class=""><a href="/event">Sự Kiện</a></li>
+                <li class=""><a href="/testing">Kiểm Tra</a></li>
+                <li class=""><a href="/contribute">Đóng Góp</a></li>
+            </ul>
+            <div class="search-container">
+                <input id="input_course" type="text" placeholder="Tìm kiếm">
+                <a class="search-button"><i class="fa fa-search"></i></a>
+            </div>
+            <div class="Navbar__form">
+
+                <div class="Navbar__form__button">
+                    <button type="button" class="btn-dez" style="padding:3px 20px"><a>Courses For You</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="searchPage__leftMenu">
+        <div id="unLock" class="listCategory">
+            <div class="title-btn-clear">
+                <a>
+                    <button id="checkHidden" type="button" class="ant-btn toggle-button ant-btn-sm" onclick="minimizeBox()" isHidden="True">
+                        <i id="muiTen" aria-label="icon: caret-down" class="anticon anticon-caret-down">
+                            <svg viewBox="0 0 1024 1024" focusable="false" class="" data-icon="caret-down" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+                                <path d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z">
+
+                                </path>
+                            </svg>
+                        </i>
+
+                        <span>CÁC NGUỒN TRANG</span>
+                    </button>
+                </a>
+            </div>
+
+            <div id="listCoursePage" class="categoriesAndTypes isHidden">
+                <div>
+                    <label class="ant-checkbox-wrapper">
+                        <span class="ant-checkbox">
+                            <input id="checkAll" type="checkbox" class="ant-checkbox-input" value="coursera">
+                            <span class="ant-checkbox-inner">
+                            </span>
+                        </span>
+                        <span>Coursera</span>
+                    </label>
+                </div>
+                <div id="childCheck" class="childOption">
+                    <label class="ant-checkbox-wrapper">
+                        <span class="ant-checkbox">
+                            <input type="checkbox" class="ant-checkbox-input" value="learn" name="all[]">
+                            <span class="ant-checkbox-inner">
+                            </span>
+                        </span>
+                        <span>Learn</span>
+                    </label>
+                    <label class="ant-checkbox-wrapper">
+                        <span class="ant-checkbox">
+                            <input type="checkbox" class="ant-checkbox-input" value="specializations" name="all[]">
+                            <span class="ant-checkbox-inner">
+                            </span>
+                        </span>
+                        <span>Specializations</span>
+                    </label>
+                    <label class="ant-checkbox-wrapper">
+                        <span class="ant-checkbox">
+                            <input type="checkbox" class="ant-checkbox-input" value="professional_certificate" name="all[]">
+                            <span class="ant-checkbox-inner">
+                            </span>
+                        </span>
+                        <span>Professional Certificate</span>
+                    </label>
+                </div>
+            </div>
+            <hr />
+            <div id="listTongHop" class="categoriesAndTypes isHidden">
+                <div>
+                    <label class="ant-checkbox-wrapper">
+                        <span class="ant-checkbox">
+                            <input id="checkAll" type="checkbox" class="ant-checkbox-input" value="coursera">
+                            <span class="ant-checkbox-inner">
+                            </span>
+                        </span>
+                        <span>Nguồn tổng hợp</span>
+                    </label>
+                </div>
+                <div id="childTongHop" class="childOption">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <div id="back" >
+            <a onclick="quayLai()">Quay lại</a>
+        </div>
+        <hr />
+        <div class="row" id="post">
+            <!-- <div class="loader"></div> -->
+            
+           
+        </div>
+    
+       <div id="moreInfo">
+           
+       </div>
+    
+        <div id="changePage" class="pagination">
+            <a id="previousClick" onclick="previousPageFunc()">&laquo;</a>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="chiTietKhoaHoc" role="dialog">
+            <div class="modal-dialog">
+    
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Chi tiết khóa học</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="detailCourse">
+    
+                        </div>
+                        <div class="row" id="relatedCourse">
+    
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-dez" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    
+        <p class="totop">
+            <a class="backTop" href="#top">Back to top</a>
+        </p>
+        <hr />
+        <footer>
+            <p>&copy; My ASP.NET Application</p>
+        </footer>
+    </div>
+    <script src="Scripts/jquery-3.4.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script src="Scripts/showJob.js"></script>
+    <script>for (var i = 0; i < 30; i++) {
+            document.getElementById('post').innerHTML += '<div class="column setHidden"> <div class="column-content linear-background"></div></div>'
+        }</script>
+    
+    <script src="Scripts/handleData.js"></script>
+    <script src="Scripts/classcentralHandleData.js"></script>
+    <script src="Scripts/showJob.js"></script>
+    
+    <script>$('.backTop').click(function () {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 600);
+            return false;
+        });
+
+        $(window).scroll(function () {
+
+            if ($(this).scrollTop() > 50) {
+                $('.totop a').fadeIn();
+            } else {
+                $('.totop a').fadeOut();
+            }
+        });</script>
+</body>
+</html>

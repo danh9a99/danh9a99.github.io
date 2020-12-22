@@ -1,0 +1,119 @@
+﻿body {
+}
+.searchPage__leftMenu {
+    width: 290px;
+    position: absolute;
+    z-index: 1;
+    top: 20px;
+    left: 10px;
+    overflow-x: hidden;
+    padding: 8px 0;
+    padding-top: 50px;
+    background: #fff;
+}
+    .searchPage__leftMenu .listCategory {
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+        box-sizing: border-box;
+    }
+        .searchPage__leftMenu .listCategory .title-btn-clear {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    .searchPage__leftMenu .listLevel {
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+        box-sizing: border-box;
+        border-top: 1px solid rgba(0,0,0,.12);
+    }
+        .searchPage__leftMenu .listLevel .skills {
+            font-family: roboto,sans-serif !important;
+            display: flex;
+            flex-direction: column;
+            padding-left: 23px;
+        }
+    .searchPage__leftMenu .rating {
+        display: flex;
+        flex-direction: column;
+        padding: 16px 40px;
+        box-sizing: border-box;
+        border-top: 1px solid rgba(0,0,0,.12);
+        overflow: hidden;
+    }
+    .searchPage__leftMenu .listCategory .categoriesAndTypes {
+        padding-left: 25px;
+    }
+        .searchPage__leftMenu .listCategory .categoriesAndTypes .ant-checkbox-wrapper {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 19px;
+            color: rgba(0,0,0,.87);
+            padding: 7px 0;
+            font-family: roboto,sans-serif !important;
+        }
+        .searchPage__leftMenu .listCategory .categoriesAndTypes .childOption {
+            font-family: roboto,sans-serif !important;
+            display: flex;
+            flex-direction: column;
+            padding-left: 15px;
+        }
+    .searchPage__leftMenu .listCategory .title-btn-clear .toggle-button {
+        padding: 0;
+        background-color: #fff;
+        border: unset;
+        color: rgba(0,0,0,.87);
+        font-family: roboto,sans-serif !important;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 16px;
+        line-height: 19px;
+        letter-spacing: .5px;
+        outline:0;
+    }
+    .searchPage__leftMenu .listLevel .toggle-button {
+        padding: 0;
+        background-color: #fff;
+        border: unset;
+        color: rgba(0,0,0,.87);
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        letter-spacing: .5px;
+        font-family: roboto,sans-serif !important;
+    }
+    .searchPage__leftMenu .listLevel .skills .ant-checkbox-wrapper {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        font-family: roboto,sans-serif !important;
+        color: rgba(0,0,0,.87);
+        margin-left: 0;
+        padding: 7px 0;
+    }
+        .searchPage__leftMenu .listLevel .toggle-button:active, .searchPage__leftMenu .listLevel .toggle-button:focus, .searchPage__leftMenu .listLevel .toggle-button:hover {
+            border-color: unset !important;
+            background-color: #fff !important;
+            color: rgba(0,0,0,.87) !important;
+        }
+    .searchPage__leftMenu .rating .toggle-button {
+        padding: 0;
+        background-color: #fff;
+        border: unset;
+        color: rgba(0,0,0,.87);
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        letter-spacing: .5px;
+        font-family: roboto,sans-serif !important;
+    }
+input, input[type="checkbox"] {
+
+    margin-right: 10px;
+}

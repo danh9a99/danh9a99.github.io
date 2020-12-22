@@ -1,0 +1,245 @@
+.page-job-detail {
+    position: relative;
+    margin-top: 10px;
+    background-color: #f5f5f5;
+    font-family: "Open Sans",Nunito,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+.wrapper-job-detail-header {
+    background: #fff;
+    padding: 15px 12.5% 0;
+    box-shadow: 0 0.5px 0 rgb(0 0 0 / 10%);
+}
+.page-job-detail__header {
+    margin-top: 10px;
+}
+.page-job-detail .box {
+    box-shadow: unset;
+}
+
+.page-job-detail__header .job-title {
+    font-weight: 500;
+    font-size: 27px;
+    margin-bottom: 8px;
+    font-family: "Open Sans",Nunito,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+.page-job-detail__header .company-name {
+    text-transform: uppercase;
+    display: inline;
+}
+.page-job-detail__header .company-location a:hover, .page-job-detail__header .company-name a:hover {
+    color: #f7941d;
+}
+
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+    cursor: pointer;
+}
+.page-job-detail__header .btn-apply {
+    margin-bottom: 5px;
+    margin-top: 4px;
+    font-size: 18px;
+    padding: 11px 20px;
+}
+
+.page-job-detail__header .btn-save {
+    font-weight: 400;
+    padding: 9px 20px;
+    font-size: 14px;
+    margin-top: 2px;
+}
+.page-job-detail__detail .box-summary .summary-item {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(206,211,213,.5);
+}
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+.page-job-detail__detail {
+    font-size: 14px;
+    padding: 0 12.5%;
+    background-color:  #F8F8F8;
+}
+.page-job-detail__detail .box-summary {
+    border: 1px solid rgba(0,185,242,.5);
+    padding: 23px;
+    background-color: #f7fdff;
+    border-radius: 7px;
+    
+}
+.box-loving-jobs .box-loving-jobs__header {
+    background-color: #F8F8F8;
+    border-bottom: 1px solid #EEE;
+    height: 45px;
+    color: #555;
+    font-family: "Open Sans",Nunito,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    padding: 11px 10px 10px 21px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+}
+
+.page-job-detail__detail .job-description {
+    margin-bottom: 65px;
+    margin-right: 40px;
+    text-align: justify;
+}
+
+@media (min-width: 992px){
+    .page-job-detail__detail .tab-pane-job-info .tab-main-content{
+        right: 30%;
+    }
+    .page-job-detail__detail .tab-pane-job-info .tab-sidebar {
+        left: 65%;
+    }
+    .page-job-detail__detail .tab-main-content {
+        padding-right: 40px;
+    }
+}
+.box-loving-jobs {
+    margin-top: 20px;
+    background-color: transparent;
+    border: 1px solid #EEE;
+}
+.page-job-detail {
+    position: relative;
+    margin-top: 10px;
+    background-color: #f5f5f5;
+    font-family: "Open Sans",Nunito,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+.box {
+    background: #fff;
+    margin-bottom: 15px;
+    border: 0;}
+
+
+    /*button quocde*/
+.btn-dez {
+    color: #012840;
+    padding: 5px 35px;
+    border: 1px solid #fff;
+    border-radius: 15px;
+    position: relative;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all .5s;
+    outline: none !important;
+}
+
+
+
+    .btn-dez:disabled {
+        opacity: 0.6;
+        cursor: no-drop;
+    }
+
+
+    .btn-dez i {
+        color: #012840;
+        font-size: 20px;
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-right: 10px;
+    }
+
+    .btn-dez:hover:enabled {
+        background-color: #012840;
+        color: #f0f0f0;
+    }
+
+        .btn-dez:hover:enabled i {
+            color: #f0f0f0;
+        }
+
+.continute.btn-dez i {
+    left: 140px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: 10px;
+}
+
+.continute.MH0305.btn-dez i {
+    left: 140px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: 10px;
+}
+
+.mh04-video-buttons {
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-evenly;
+}
+/*end*/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+.page-job-detail__loving-jobs-wrapper {
+    padding: 0 12.5%;
+}
+.page-job-detail__loving-jobs .job .col-xs-8 {
+    width: 75%;
+    padding-right: 20px;
+    align-self: center;
+}
+.page-job-detail__loving-jobs .box {
+    padding: 10px;
+    transition: background-color .3s;
+}
+.page-job-detail__loving-jobs .title {
+    font-family: "Open Sans",Nunito,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    margin-top: 0;
+}
+.page-job-detail__loving-jobs .box:hover {
+    background: #f3fcff;
+}
+.page-job-detail__loving-jobs .box {
+    padding: 10px;
+    transition: background-color .3s;
+}
+
+.text-content {
+    color: rgba(0,0,0,.87);
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+h3 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-bottom: 30px;
+}
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+}
+.column-content {
+    border: 1px solid #fff;
+    height: auto;
+    border-radius: 25px;
+    padding: 10px;
+    background-color: #fff;
+}
+.column-content .contentCard__dynamicContent {
+    text-align: center;
+}
+
+.column-content img {
+    float: left;
+    padding: 30px;
+}
+
+.column-content:hover {
+    border: 1px solid #fff;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
