@@ -99,8 +99,6 @@
     <div class="page-job-detail page-job-detail_no-background">
         <div class="container-fluid page-foreground">
             <div class="wrapper-job-detail-header">
-
-
                 <!--/ Block: SHARE THIS -->
                 <!-- Section: HEADER -->
                 <section class="page-job-detail__header ">
@@ -121,7 +119,7 @@
                             <div class="col-md-10 col-content-wrapper">
                                 <div class="row">
                                     <div class="col-lg-9 col-md-9 col-content">
-                                        <div class="job-header-info">
+                                        <div id="infoCourse" class="job-header-info">
                                             <h1 id="courseTitle" class="job-title"></h1>
                                             <div class="row">
                                                 <div class="col-sm-12 company-name">
@@ -181,8 +179,7 @@
                         </a>
                     </li>
                     <li class="animated fadeIn" role="presentation ">
-                        <a href="#company-info" class="track-event" data-evt-type="view-tab-cominfo" role="tab"
-                            data-toggle="tab">
+                        <a href="#company-info" class="track-event" data-evt-type="view-tab-cominfo" role="tab" data-toggle="tab">
                             <span class="hidden-sm hidden-xs">Nội dung học</span>
 
                         </a>
@@ -196,8 +193,7 @@
 
                     <!-- Section: KYNA COURSES -->
                     <li class="kyna-tab animated fadeIn" role="presentation">
-                        <a href="#kyna" class="track-event" data-evt-type="view-tab-course-recommend" role="tab"
-                            data-toggle="tab">
+                        <a onclick="jobtab();" href="#kyna" class="track-event" data-evt-type="view-tab-course-recommend" role="tab" data-toggle="tab">
                             <span class="hidden-sm hidden-xs">Công việc phù hợp</span>
                             <span class="visible-sm visible-xs">công việc</span>
                             <span class="label label-sm label-danger m-t-n-sm label__new-tag">MỚI</span>
@@ -207,8 +203,7 @@
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane tab-pane-job-info active box box-md animated fadeIn"
-                        id="job-info">
+                    <div role="tabpanel" class="tab-pane tab-pane-job-info active box box-md animated fadeIn" id="job-info">
                         <div class="row">
                             <div class="col-md-4 col-sm-12 tab-sidebar">
                                 <div class="mobile-box" style="margin-top: 30px;">
@@ -297,51 +292,20 @@
                             <!--/ Job Description-->
                         </div>
                     </div>
-                </div>
-
-                <div role="tabpanel" class="tab-pane tab-pane-jobs box box-md animated fadeIn" id="company-job"
-                    hidden="">
-                    <div class="mobile-box">
-                        <div id="job-list-wrapper" class="animated fadeIn">
-                            <!-- Job List -->
-                            <div class="job-list list-border">
-                                <div class="job list-border__item">
-                                    <a target="_blank" class="job-title"
-                                        href="https://www.vietnamworks.com/ke-toan-tong-hop-3695-1321477-jv">
-                                        Kế Toán Tổng Hợp
-                                    </a>
-                                    <div class="job-info text-light">
-                                        <span class="salary text-primary">$450 - $700</span>
-                                        <span class="separator">|</span>
-                                        <span class="location">Hà Nội</span>
-                                        <span class="separator">|</span>
-                                        <span class="date-posted">21 ngày trước</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/ Job List -->
-                        </div>
+                    <div role="tabpanel" class="tab-pane tab-pane-jobs box box-md animated fadeIn" id="company-job" hidden="">
+                        
+                    </div>
+    
+                    <!-- Section: KYNA COURSES -->
+                    <div role="tabpanel" class="tab-pane tab-pane-jobs box box-md animated fadeIn" id="kyna">
+    
                     </div>
                 </div>
 
-                <!-- Section: KYNA COURSES -->
-                <div role="tabpanel" class="tab-pane tab-pane-jobs box box-md animated fadeIn" id="kyna">
-
-                </div>
+                
                 <!--/ KYNA COURSES -->
 
             </section>
-            <div class="page-job-detail__loving-jobs-wrapper">
-                <section class="page-job-detail__choose-for-you">
-                    <h2>Việc làm bạn sẽ thích</h2>
-                    <div id="recommendation-jobs">
-                        <div class="row row_loving-jobs ">
-
-                        </div>
-                    </div>
-                </section>
-
-            </div>
         </div>
 
     </div>
@@ -360,6 +324,23 @@
 <script src="Scripts/jquery-3.4.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+<script>for (var i = 0; i < 6; i++) {
+    document.getElementById('kyna').innerHTML += '<div class="column setHidden"> <div class="column-content linear-background"></div></div>'
+}
+    // document.getElementById('infoCourse').innerHTML = '<h1 id="courseTitle" class="job-title linear-background"></h1>'+
+    //                                             '<div class="row">'+
+    //                                                 '<div class="col-sm-12 company-name "><a class="linear-background"></a></div>'+
+    //                                                 '<div class="col-sm-12 location-name"><span class="company-location"><a class="lang linear-background"></a></span></div>'+
+                                                    
+    //                                             '</div>'+
+    //                                             '<div class="row">'+
+    //                                                 '<div class="col-sm-12 ">' +
+    //                                                     '<span class="level linear-background"><a></a></span>'
+    //                                                 '</div>'
+    //                                             '</div>';
+                                                
+</script>
+
 <script>
     let _coursera = {};
     var urlString = window.location.href;
@@ -374,13 +355,13 @@
         document.querySelector('.description').innerText = json.coursera[courseType][courseCode].about;
         document.querySelector('.company-name a').innerText = json.coursera[courseType][courseCode].partner;
         document.querySelector('.level a').innerText = json.coursera[courseType][courseCode].level;
-        //
+        $(".job-title .linear-background").hide();
 
     });
-
-    var keyword = courseCode;
+    function jobtab(){
+        var keyword = courseCode;
     $.ajax({
-        url: "https://wrapapi.com/use/bapp-it17/itviec/b_it/1.0.0",
+        url: "https://wrapapi.com/use/bapp-it17/itviec/b_it/2.0.2",
         method: "POST",
         data: {
             "wrapAPIKey": "j751CwjyTl5L6re4c1SiUWiKaGtWJlb7",
@@ -388,8 +369,8 @@
         }
     }).done(function (data) {
         for(var i = 0; i < data.data.itviec.length;i++){
-            document.querySelector('#recommendation-jobs .row_loving-jobs').innerHTML += '<div class="column" id="specializations"><div  class="column-content"><img  src="' + data.data.itviec[i].jobImage + '" alt="Image document" />' +
-            '<h3>' + data.data.itviec[i].jobTitle + ' </h3>' +
+            document.querySelector('#kyna').innerHTML += '<div class="column" id="specializations"><div  class="column-content"><img  src="' + data.data.itviec[i].jobImage + '" alt="Image document" />' +
+            '<h3><a target="_blank" href="https://itviec.com'+data.data.itviec[i].jobLink+'">' + data.data.itviec[i].jobTitle + '</a> </h3>' +
             '<div class="text-job-description">'+data.data.itviec[i].jobDescription +'</div>'+
             '<hr>'+
             '<div class="text-content"><i  class="fa fa-globe"></i> ' +  data.data.itviec[i].jobLocation + '</div  > ' +
@@ -400,5 +381,8 @@
                 break;
             }
         }
-    });
+        $(".setHidden").hide();
+        });
+    }
+    
 </script>
