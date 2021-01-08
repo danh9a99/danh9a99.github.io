@@ -1,5 +1,11 @@
 ﻿body {
 }
+@media only screen and (max-width: 800px) {
+    .searchPage__leftMenu {
+        Display: none;
+    }
+  }
+
 .searchPage__leftMenu {
     width: 290px;
     position: absolute;
