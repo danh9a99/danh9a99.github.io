@@ -171,13 +171,13 @@
                 
             </ul>
             <div class="search-container">
-                <input id="input_course" type="text" placeholder="Tìm kiếm">
+                <input id="input_course" class="st-default-search-input" type="text" placeholder="Tìm kiếm">
                 <a class="search-button"><i class="fa fa-search"></i></a>
             </div>
             <div class="Navbar__form">
 
                 <div class="Navbar__form__button">
-                    <button type="button" class="btn-dez" style="padding:3px 20px"><a>Courses For You</a></button>
+                    <button onclick="loginFunc()" type="button" class="btn-dez" style="padding:3px 20px"><a href="login.html">Courses For You</a></button>
                 </div>
             </div>
         </div>
@@ -336,5 +336,10 @@
                 $('.totop a').fadeOut();
             }
         });</script>
+    <script>
+        function loginFunc(){
+            
+        }
+    </script>
 </body>
 </html>
