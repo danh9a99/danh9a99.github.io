@@ -41,7 +41,7 @@
           <div class="Navbar__form">
 
               <div class="Navbar__form__button">
-                  <button onclick="loginFunc()" type="button" class="btn-dez" style="padding:3px 20px"><a href="login.html">Courses For You</a></button>
+                  <button onclick="checkIsLogin()" type="button" class="btn-dez" style="padding:3px 20px"><a>Courses For You</a></button>
               </div>
           </div>
       </div>
@@ -114,5 +114,15 @@
     <script src="Scripts/popper.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
     <script src="Scripts/main.js"></script>
+    <script>
+      function checkIsLogin(){
+        if(localStorage.getItem('user') == NULL){
+          window.location.href="/login.html"
+        }
+        else{
+          console.log('Chuyển đến trang khoá học dành cho bạn')
+        }
+      }
+    </script>
   </body>
 </html>
