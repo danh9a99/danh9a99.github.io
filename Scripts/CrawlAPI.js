@@ -1,13 +1,12 @@
-function generateCourse(){
+function generateCourse(offset){
+  document.getElementById('post').innerHTML = ""
     $.ajax({
         type: "GET",
-        url: "http://127.0.0.1:8000/api/course?limit=10",
+        url: "http://127.0.0.1:8000/api/course?limit=10&offset="+offset,
         contentType:"application/json",
         dataType:"json",
         success: function (data) {
-          console.log(data.results[0].course_image)
           for(var index = 0; index < data.results.length; index++){
-              console.log(data.results[index].course_image)
               document.getElementById('post').innerHTML += '<div class="column" id="learn"><div  class="column-content"><img  src="' +
               data.results[index].course_image + '" alt="Image document" style="width:170px;height:170px;"/><h3 id="' + data.results[index].course_tag +
               '" idkhoahoc="' + data.results[index].course_tag + '" onclick="chiTietKhoaHoc(this)">' + data.results[index].course_title + '<a class="nameCourse">' +
@@ -20,7 +19,41 @@ function generateCourse(){
             '<div class="contentCard__dynamicContent"><button id="' +data.results[index].course_tag+'"  onclick="chiTietKhoaHoc(this)" class="btn-dez" data-toggle="modal"><i class="fa fa-list-alt"></i>Chi tiết</button></div>   </div></div>';
           }
           $(".setHidden").hide();
+          
         }
         
       });
+      
 }
+
+// function changePageFunc(obj){
+//   var _lenChild = document.getElementById('changePage').childElementCount;
+  
+//   if(document.getElementById('inc_'+ Math.floor(_lenChild/2)).innerHTML == Math.floor(_lenChild/2)){
+//     console.log("page number:" + obj.value)
+//   }
+// }
+function previousPageFunc(obj){
+  offsetPrev = document.getElementById('previousClick').getAttribute('value');
+  offsetNext = document.getElementById('nextClick').getAttribute('value');
+  if(offsetPrev != 0){
+    
+    generateCourse(offsetPrev)
+    document.getElementById('previousClick').setAttribute('value', parseInt(offsetPrev) - 10)
+    document.getElementById('nextClick').setAttribute('value', parseInt(offsetNext) - 10)
+  }
+}
+function nextPageFunc(obj){
+  offsetPrev = document.getElementById('previousClick').getAttribute('value');
+  offsetNext = document.getElementById('nextClick').getAttribute('value');
+
+
+  if(offsetNext < 1750){
+    generateCourse(offsetNext);
+    document.getElementById('previousClick').setAttribute('value', parseInt(offsetPrev) + 10)
+    document.getElementById('nextClick').setAttribute('value', parseInt(offsetNext) + 10)
+  }
+  
+}
+
+

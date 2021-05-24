@@ -273,8 +273,10 @@
        </div>
     
         <div id="changePage" class="pagination">
-            <a id="previousClick" onclick="previousPageFunc()">&laquo;</a>
+            <a id="previousClick" value="0" onclick="previousPageFunc(this)">&laquo;</a>
+            <a id="nextClick" value="10" onclick="nextPageFunc(this)">&raquo;</a>
         </div>
+
         <!-- Modal -->
         <div class="modal fade" id="chiTietKhoaHoc" role="dialog">
             <div class="modal-dialog">
