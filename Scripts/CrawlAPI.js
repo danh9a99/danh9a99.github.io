@@ -1,4 +1,5 @@
 function generateCourse(offset){
+  //window.location.href="course-list.html"
   document.getElementById('post').innerHTML = ""
     $.ajax({
         type: "GET",
@@ -7,25 +8,92 @@ function generateCourse(offset){
         dataType:"json",
         success: function (data) {
           for(var index = 0; index < data.results.length; index++){
-              document.getElementById('post').innerHTML += '<div class="column" id="learn"><div  class="column-content"><img  src="' +
-              data.results[index].course_image + '" alt="Image document" style="width:170px;height:170px;"/><h3 id="' + data.results[index].course_tag +
-              '" idkhoahoc="' + data.results[index].course_tag + '" onclick="chiTietKhoaHoc(this)">' + data.results[index].course_title + '<a class="nameCourse">' +
-              data.results[index].course_title + ' </a> </h3><div class="text-content"><i  class="fa fa-globe"></i> ' + data.results[index].language +
-              '</div  >  <div class="text-content"><i class="fa fa-shield" aria-hidden="true"></i>' +
-            ' <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span></div> ' +
-            ' <div class="text-content"><i class="fa fa-user" aria-hidden="true"></i>' + data.results[index].enrolled + '</div> ' +
-            '<div class="text-content tag-content" id="skillGain_' + data.results[index].course_tag + '"><i class="fa fa-tags" aria-hidden="true"></i></div>' +
-            '<div class="underLine"><hr></div> ' +
-            '<div class="contentCard__dynamicContent"><button id="' +data.results[index].course_tag+'"  onclick="chiTietKhoaHoc(this)" class="btn-dez" data-toggle="modal"><i class="fa fa-list-alt"></i>Chi tiết</button></div>   </div></div>';
+            //   document.getElementById('post').innerHTML += '<div class="column" id="learn"><div  class="column-content"><img  src="' +
+            //   data.results[index].course_image + '" alt="Image document" style="width:170px;height:170px;"/><h3 id="' + data.results[index].course_tag +
+            //   '" idkhoahoc="' + data.results[index].course_tag + '" onclick="chiTietKhoaHoc(this)">' + data.results[index].course_title + '<a class="nameCourse">' +
+            //   data.results[index].course_title + ' </a> </h3><div class="text-content"><i  class="fa fa-globe"></i> ' + data.results[index].language +
+            //   '</div  >  <div class="text-content"><i class="fa fa-shield" aria-hidden="true"></i>' +
+            // ' <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span></div> ' +
+            // ' <div class="text-content"><i class="fa fa-user" aria-hidden="true"></i>' + data.results[index].enrolled + '</div> ' +
+            // '<div class="text-content tag-content" id="skillGain_' + data.results[index].course_tag + '"><i class="fa fa-tags" aria-hidden="true"></i></div>' +
+            // '<div class="underLine"><hr></div> ' +
+            // '<div class="contentCard__dynamicContent"><button id="' +data.results[index].course_tag+'"  onclick="chiTietKhoaHoc(this)" class="btn-dez" data-toggle="modal"><i class="fa fa-list-alt"></i>Chi tiết</button></div>   </div></div>';
+              document.getElementById('post').innerHTML += '<a href="single-job-page.html" class="job-listing">' +
+              '<div class="job-listing-details">' +
+              '<div class="job-listing-company-logo">' +
+							  '<img src="'+data.results[index].course_image+'"  style="width:55;height:55px;" alt="">' +
+						  '</div>'+
+              '<div class="job-listing-description">' +
+							'<h4 class="job-listing-company">Hexagon <span class="verified-badge" title="Verified Employer" data-tippy-placement="top"></span></h4>' +
+							'<h3 class="job-listing-title">'+data.results[index].course_title+'</h3>' +
+							'<p class="job-listing-text">Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value.</p>'+
+						'</div>'+
+            '<span class="bookmark-icon"></span>'+
+					  '</div>'+
+            '<div class="job-listing-footer">' +
+						'<ul>'+
+							'<li><i class="icon-material-outline-location-on"></i> '+data.results[index].language+'</li>'+
+							'<li><i class="icon-material-outline-business-center"></i> '+data.results[index].enrolled+'</li>'+
+						'	<li><i class="icon-material-outline-account-balance-wallet"></i> $35000-$38000</li>'+
+							'<li><i class="icon-material-outline-access-time"></i> 2 days ago</li>' +
+					'	</ul>'
+					'</div>'+
+				  '</a>'
           }
           $(".setHidden").hide();
           
         }
         
       });
-      
 }
 
+$(document).ready(function(){
+  document.getElementById('post').innerHTML = ""
+    $.ajax({
+        type: "GET",
+        url: "http://127.0.0.1:8000/api/course?limit=10&offset=0",
+        contentType:"application/json",
+        dataType:"json",
+        success: function (data) {
+          for(var index = 0; index < data.results.length; index++){
+            //   document.getElementById('post').innerHTML += '<div class="column" id="learn"><div  class="column-content"><img  src="' +
+            //   data.results[index].course_image + '" alt="Image document" style="width:170px;height:170px;"/><h3 id="' + data.results[index].course_tag +
+            //   '" idkhoahoc="' + data.results[index].course_tag + '" onclick="chiTietKhoaHoc(this)">' + data.results[index].course_title + '<a class="nameCourse">' +
+            //   data.results[index].course_title + ' </a> </h3><div class="text-content"><i  class="fa fa-globe"></i> ' + data.results[index].language +
+            //   '</div  >  <div class="text-content"><i class="fa fa-shield" aria-hidden="true"></i>' +
+            // ' <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span></div> ' +
+            // ' <div class="text-content"><i class="fa fa-user" aria-hidden="true"></i>' + data.results[index].enrolled + '</div> ' +
+            // '<div class="text-content tag-content" id="skillGain_' + data.results[index].course_tag + '"><i class="fa fa-tags" aria-hidden="true"></i></div>' +
+            // '<div class="underLine"><hr></div> ' +
+            // '<div class="contentCard__dynamicContent"><button id="' +data.results[index].course_tag+'"  onclick="chiTietKhoaHoc(this)" class="btn-dez" data-toggle="modal"><i class="fa fa-list-alt"></i>Chi tiết</button></div>   </div></div>';
+              document.getElementById('post').innerHTML += '<a href="single-job-page.html" class="job-listing">' +
+              '<div class="job-listing-details">' +
+              '<div class="job-listing-company-logo">' +
+							  '<img src="'+data.results[index].course_image+'"  style="width:55;height:55px;" alt="">' +
+						  '</div>'+
+              '<div class="job-listing-description">' +
+							'<h4 class="job-listing-company">Hexagon <span class="verified-badge" title="Verified Employer" data-tippy-placement="top"></span></h4>' +
+							'<h3 class="job-listing-title">'+data.results[index].course_title+'</h3>' +
+							'<p class="job-listing-text">Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value.</p>'+
+						'</div>'+
+            '<span class="bookmark-icon"></span>'+
+					  '</div>'+
+            '<div class="job-listing-footer">' +
+						'<ul>'+
+							'<li><i class="icon-material-outline-location-on"></i> '+data.results[index].language+'</li>'+
+							'<li><i class="icon-material-outline-business-center"></i> '+data.results[index].enrolled+'</li>'+
+						'	<li><i class="icon-material-outline-account-balance-wallet"></i> $35000-$38000</li>'+
+							'<li><i class="icon-material-outline-access-time"></i> 2 days ago</li>' +
+					'	</ul>'
+					'</div>'+
+				  '</a>'
+          }
+          $(".setHidden").hide();
+          
+        }
+        
+      });
+});
 // function changePageFunc(obj){
 //   var _lenChild = document.getElementById('changePage').childElementCount;
   
