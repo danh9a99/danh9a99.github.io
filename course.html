@@ -14,14 +14,14 @@
 <link rel="stylesheet" href="css/colors/blue.css">
 
 </head>
-<body>
+<body class="gray">
 
 <!-- Wrapper -->
-<div id="wrapper" class="wrapper-with-transparent-header">
+<div id="wrapper">
 
 <!-- Header Container
 ================================================== -->
-<header id="header-container" class="fullwidth transparent-header">
+<header id="header-container" class="fullwidth">
 
 	<!-- Header -->
 	<div id="header">
@@ -32,14 +32,14 @@
 				
 				<!-- Logo -->
 				<div id="logo">
-					<a href="index.html"><img src="images/logo2.png" data-sticky-logo="images/logo.png" data-transparent-logo="images/logo2.png" alt=""></a>
+					<a href="index.html"><img src="images/logo.png" alt=""></a>
 				</div>
 
 				<!-- Main Navigation -->
 				<nav id="navigation">
 					<ul id="responsive">
 
-						<li><a href="#" class="current">Home</a>
+						<li><a href="#">Home</a>
 							<ul class="dropdown-nav">
 								<li><a href="index.html">Home 1</a></li>
 								<li><a href="index-2.html">Home 2</a></li>
@@ -47,7 +47,7 @@
 							</ul>
 						</li>
 
-						<li><a onclick="generateCourse(0)" href="course-list.html">Courses</a>
+						<li><a href="#" class="current">Find Work</a>
 							<ul class="dropdown-nav">
 								<li><a href="#">Browse Jobs</a>
 									<ul class="dropdown-nav">
@@ -341,408 +341,157 @@
 <div class="clearfix"></div>
 <!-- Header Container / End -->
 
+<!-- Spacer -->
+<div class="margin-top-90"></div>
+<!-- Spacer / End-->
 
-
-<!-- Intro Banner
+<!-- Page Content
 ================================================== -->
-<div class="intro-banner dark-overlay big-padding">
-	
-	<!-- Transparent Header Spacer -->
-	<div class="transparent-header-spacer"></div>
-
-	<div class="container">
-		
-		<!-- Intro Headline -->
-		<div class="row">
-			<div class="col-md-12">
-				<div class="banner-headline-alt">
-					<h3>Don't Just Dream, Do</h3>
-					<span>Find the best jobs in the digital industry</span>
-				</div>
-			</div>
-		</div>
-		
-		<!-- Search Bar -->
-		<div class="row">
-			<div class="col-md-12">
-				<div class="intro-banner-search-form margin-top-95">
-
-					<!-- Search Field -->
-					<div class="intro-search-field with-autocomplete">
-						<label for="autocomplete-input" class="field-title ripple-effect">Where?</label>
-						<div class="input-with-icon">
-							<input id="autocomplete-input" type="text" placeholder="Online Job">
-							<i class="icon-material-outline-location-on"></i>
-						</div>
-					</div>
-
-					<!-- Search Field -->
-					<div class="intro-search-field">
-						<label for ="intro-keywords" class="field-title ripple-effect">What job you want?</label>
-						<input id="intro-keywords" type="text" placeholder="Search for 2,000 courses">
-					</div>
-
-					<!-- Button -->
-					<div class="intro-search-button">
-						<button class="button ripple-effect" onclick="searchResult()">Search</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Stats -->
-		<div class="row">
-			<div class="col-md-12">
-				<ul class="intro-stats margin-top-45 hide-under-992px">
-					<li>
-						<strong class="counter">1,586</strong>
-						<span>Jobs Posted</span>
-					</li>
-					<li>
-						<strong class="counter">3,543</strong>
-						<span>Tasks Posted</span>
-					</li>
-					<li>
-						<strong class="counter">1,232</strong>
-						<span>Freelancers</span>
-					</li>
-				</ul>
-			</div>
-		</div>
-
-	</div>
-	
-	<!-- Video Container -->
-	<div class="video-container" data-background-image="images/home-video-background-poster.jpg">
-		<video loop autoplay muted>
-			<source src="images/home-video-background.mp4" type="video/mp4">
-		</video>
-	</div>
-
-</div>
-
-<!-- Content
-================================================== -->
-<!-- Features Jobs -->
-<div class="section padding-top-65 padding-bottom-75">
-	<div class="container">
-		<div class="row">
-			<div class="col-xl-12">
+<div class="container">
+	<div class="row">
+		<div class="col-xl-3 col-lg-4">
+			<div class="sidebar-container">
 				
-				<!-- Section Headline -->
-				<div class="section-headline margin-top-0 margin-bottom-35">
-					<h3>Recent Jobs</h3>
-					<a href="jobs-list-layout-full-page-map.html" class="headline-link">Browse All Jobs</a>
+				<!-- Location -->
+				<div class="sidebar-widget">
+					<h3>Location</h3>
+					<div class="input-with-icon">
+						<div id="autocomplete-container">
+							<input id="autocomplete-input" type="text" placeholder="Location">
+						</div>
+						<i class="icon-material-outline-location-on"></i>
+					</div>
+				</div>
+
+				<!-- Keywords -->
+				<div class="sidebar-widget">
+					<h3>Keywords</h3>
+					<div class="keywords-container">
+						<div class="keyword-input-container">
+							<input type="text" class="keyword-input" placeholder="e.g. job title"/>
+							<button class="keyword-input-button ripple-effect"><i class="icon-material-outline-add"></i></button>
+						</div>
+						<div class="keywords-list"><!-- keywords go here --></div>
+						<div class="clearfix"></div>
+					</div>
 				</div>
 				
-				<!-- Jobs Container -->
-				<div class="listings-container compact-list-layout margin-top-35">
-					
-					<!-- Job Listing -->
-					<a href="single-job-page.html" class="job-listing with-apply-button">
+				<!-- Category -->
+				<div class="sidebar-widget">
+					<h3>Category</h3>
+					<select class="selectpicker" multiple data-selected-text-format="count" data-size="7" title="All Categories">
+						<option>Accounting and Finance</option>
+						<option>Clerical & Data Entry</option>
+						<option>Counseling</option>
+						<option>Court Administration</option>
+						<option>Human Resources</option>
+						<option>Investigative</option>
+						<option>IT and Computers</option>
+						<option>Law Enforcement</option>
+						<option>Management</option>
+						<option>Miscellaneous</option>
+						<option>Public Relations</option>
+					</select>
+				</div>
+				
+				<!-- Job Types -->
+				<div class="sidebar-widget">
+					<h3>Job Type</h3>
 
-						<!-- Job Listing Details -->
-						<div class="job-listing-details">
-
-							<!-- Logo -->
-							<div class="job-listing-company-logo">
-								<img src="images/company-logo-01.png" alt="">
-							</div>
-
-							<!-- Details -->
-							<div class="job-listing-description">
-								<h3 class="job-listing-title">Bilingual Event Support Specialist</h3>
-
-								<!-- Job Listing Footer -->
-								<div class="job-listing-footer">
-									<ul>
-										<li><i class="icon-material-outline-business"></i> Hexagon <div class="verified-badge" title="Verified Employer" data-tippy-placement="top"></div></li>
-										<li><i class="icon-material-outline-location-on"></i> San Francissco</li>
-										<li><i class="icon-material-outline-business-center"></i> Full Time</li>
-										<li><i class="icon-material-outline-access-time"></i> 2 days ago</li>
-									</ul>
-								</div>
-							</div>
-
-							<!-- Apply Button -->
-							<span class="list-apply-button ripple-effect">Apply Now</span>
+					<div class="switches-list">
+						<div class="switch-container">
+							<label class="switch"><input type="checkbox"><span class="switch-button"></span> Freelance</label>
 						</div>
-					</a>	
 
-
-					<!-- Job Listing -->
-					<a href="single-job-page.html" class="job-listing with-apply-button">
-
-						<!-- Job Listing Details -->
-						<div class="job-listing-details">
-
-							<!-- Logo -->
-							<div class="job-listing-company-logo">
-								<img src="images/company-logo-05.png" alt="">
-							</div>
-
-							<!-- Details -->
-							<div class="job-listing-description">
-								<h3 class="job-listing-title">Competition Law Officer</h3>
-
-								<!-- Job Listing Footer -->
-								<div class="job-listing-footer">
-									<ul>
-										<li><i class="icon-material-outline-business"></i> Laxo</li>
-										<li><i class="icon-material-outline-location-on"></i> San Francissco</li>
-										<li><i class="icon-material-outline-business-center"></i> Full Time</li>
-										<li><i class="icon-material-outline-access-time"></i> 2 days ago</li>
-									</ul>
-								</div>
-							</div>
-
-							<!-- Apply Button -->
-							<span class="list-apply-button ripple-effect">Apply Now</span>
+						<div class="switch-container">
+							<label class="switch"><input type="checkbox"><span class="switch-button"></span> Full Time</label>
 						</div>
-					</a>
-					<!-- Job Listing -->
-					<a href="single-job-page.html" class="job-listing with-apply-button">
 
-						<!-- Job Listing Details -->
-						<div class="job-listing-details">
-
-							<!-- Logo -->
-							<div class="job-listing-company-logo">
-								<img src="images/company-logo-02.png" alt="">
-							</div>
-
-							<!-- Details -->
-							<div class="job-listing-description">
-								<h3 class="job-listing-title">Barista and Cashier</h3>
-
-								<!-- Job Listing Footer -->
-								<div class="job-listing-footer">
-									<ul>
-										<li><i class="icon-material-outline-business"></i> Coffee</li>
-										<li><i class="icon-material-outline-location-on"></i> San Francissco</li>
-										<li><i class="icon-material-outline-business-center"></i> Full Time</li>
-										<li><i class="icon-material-outline-access-time"></i> 2 days ago</li>
-									</ul>
-								</div>
-							</div>
-
-							<!-- Apply Button -->
-							<span class="list-apply-button ripple-effect">Apply Now</span>
+						<div class="switch-container">
+							<label class="switch"><input type="checkbox"><span class="switch-button"></span> Part Time</label>
 						</div>
-					</a>
-					
 
-					<!-- Job Listing -->
-					<a href="single-job-page.html" class="job-listing with-apply-button">
-
-						<!-- Job Listing Details -->
-						<div class="job-listing-details">
-
-							<!-- Logo -->
-							<div class="job-listing-company-logo">
-								<img src="images/company-logo-03.png" alt="">
-							</div>
-
-							<!-- Details -->
-							<div class="job-listing-description">
-								<h3 class="job-listing-title">Restaurant General Manager</h3>
-
-								<!-- Job Listing Footer -->
-								<div class="job-listing-footer">
-									<ul>
-										<li><i class="icon-material-outline-business"></i> King <div class="verified-badge" title="Verified Employer" data-tippy-placement="top"></div></li>
-										<li><i class="icon-material-outline-location-on"></i> San Francissco</li>
-										<li><i class="icon-material-outline-business-center"></i> Full Time</li>
-										<li><i class="icon-material-outline-access-time"></i> 2 days ago</li>
-									</ul>
-								</div>
-							</div>
-
-							<!-- Apply Button -->
-							<span class="list-apply-button ripple-effect">Apply Now</span>
+						<div class="switch-container">
+							<label class="switch"><input type="checkbox"><span class="switch-button"></span> Internship</label>
 						</div>
-					</a>
-
-					<!-- Job Listing -->
-					<a href="single-job-page.html" class="job-listing with-apply-button">
-
-						<!-- Job Listing Details -->
-						<div class="job-listing-details">
-
-							<!-- Logo -->
-							<div class="job-listing-company-logo">
-								<img src="images/company-logo-05.png" alt="">
-							</div>
-
-							<!-- Details -->
-							<div class="job-listing-description">
-								<h3 class="job-listing-title">International Marketing Coordinator</h3>
-
-								<!-- Job Listing Footer -->
-								<div class="job-listing-footer">
-									<ul>
-										<li><i class="icon-material-outline-business"></i> Skyist</li>
-										<li><i class="icon-material-outline-location-on"></i> San Francissco</li>
-										<li><i class="icon-material-outline-business-center"></i> Full Time</li>
-										<li><i class="icon-material-outline-access-time"></i> 2 days ago</li>
-									</ul>
-								</div>
-							</div>
-
-							<!-- Apply Button -->
-							<span class="list-apply-button ripple-effect">Apply Now</span>
+						<div class="switch-container">
+							<label class="switch"><input type="checkbox"><span class="switch-button"></span> Temporary</label>
 						</div>
-					</a>
+					</div>
 
 				</div>
-				<!-- Jobs Container / End -->
+
+				<!-- Salary -->
+				<div class="sidebar-widget">
+					<h3>Salary</h3>
+					<div class="margin-top-55"></div>
+
+					<!-- Range Slider -->
+					<input class="range-slider" type="text" value="" data-slider-currency="$" data-slider-min="1500" data-slider-max="15000" data-slider-step="100" data-slider-value="[1500,15000]"/>
+				</div>
+
+				<!-- Tags -->
+				<div class="sidebar-widget">
+					<h3>Tags</h3>
+
+					<div id='skillgain' class="tags-container">
+						
+					</div>
+					<div class="clearfix"></div>
+				</div>
 
 			</div>
 		</div>
-	</div>
-</div>
-<!-- Featured Jobs / End -->
+		<div class="col-xl-9 col-lg-8 content-left-offset">
+
+			<h3 class="page-title">Search Results</h3>
+
+			<div class="notify-box margin-top-15">
+				<div class="switch-container">
+					<label class="switch"><input type="checkbox"><span class="switch-button"></span><span class="switch-text">Turn on email alerts for this search</span></label>
+				</div>
+
+				<div class="sort-by">
+					<span>Sort by:</span>
+					<select class="selectpicker hide-tick">
+						<option>Relevance</option>
+						<option>Newest</option>
+						<option>Oldest</option>
+						<option>Random</option>
+					</select>
+				</div>
+			</div>
+
+			<div id='searchresult' class="listings-container compact-list-layout margin-top-35">
+				
+			</div>
 
 
-<!-- Photo Section -->
-<div class="photo-section" data-background-image="images/section-background.jpg">
-
-	<!-- Infobox -->
-	<div class="text-content white-font">
-		<div class="container">
-
+			<!-- Pagination -->
+			<div class="clearfix"></div>
 			<div class="row">
-				<div class="col-lg-6 col-md-8 col-sm-12">
-					<h2>Hire experts or be hired. <br> For any job, any time.</h2>
-					<p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation is on the runway towards.</p>
-					<a href="pages-pricing-plans.html" class="button button-sliding-icon ripple-effect big margin-top-20">Get Started <i class="icon-material-outline-arrow-right-alt"></i></a>
-				</div>
-			</div>
-
-		</div>
-	</div>
-
-	<!-- Infobox / End -->
-
-</div>
-<!-- Photo Section / End -->
-
-
-<!-- Recent Blog Posts -->
-<div class="section padding-top-65 padding-bottom-50">
-	<div class="container">
-		<div class="row">
-			<div class="col-xl-12">
-				
-				<!-- Section Headline -->
-				<div class="section-headline margin-top-0 margin-bottom-45">
-					<h3>From The Blog</h3>
-					<a href="pages-blog.html" class="headline-link">View Blog</a>
-				</div>
-
-				<div class="row">
-					<!-- Blog Post Item -->
-					<div class="col-xl-4">
-						<a href="pages-blog-post.html" class="blog-compact-item-container">
-							<div class="blog-compact-item">
-								<img src="images/blog-01a.jpg" alt="">
-								<span class="blog-item-tag">Tips</span>
-								<div class="blog-compact-item-content">
-									<ul class="blog-post-tags">
-										<li>22 July 2018</li>
-									</ul>
-									<h3>16 Ridiculously Easy Ways to Find & Keep a Remote Job</h3>
-									<p>Distinctively reengineer revolutionary meta-services and premium architectures intuitive opportunities.</p>
-								</div>
-							</div>
-						</a>
-					</div>
-					<!-- Blog post Item / End -->
-
-					<!-- Blog Post Item -->
-					<div class="col-xl-4">
-						<a href="pages-blog-post.html" class="blog-compact-item-container">
-							<div class="blog-compact-item">
-								<img src="images/blog-02a.jpg" alt="">
-								<span class="blog-item-tag">Recruiting</span>
-								<div class="blog-compact-item-content">
-									<ul class="blog-post-tags">
-										<li>29 June 2018</li>
-									</ul>
-									<h3>How to "Woo" a Recruiter and Land Your Dream Job</h3>
-									<p>Appropriately empower dynamic leadership skills after business portals. Globally myocardinate interactive.</p>
-								</div>
-							</div>
-						</a>
-					</div>
-					<!-- Blog post Item / End -->
-
-					<!-- Blog Post Item -->
-					<div class="col-xl-4">
-						<a href="pages-blog-post.html" class="blog-compact-item-container">
-							<div class="blog-compact-item">
-								<img src="images/blog-03a.jpg" alt="">
-								<span class="blog-item-tag">Marketing</span>
-								<div class="blog-compact-item-content">
-									<ul class="blog-post-tags">
-										<li>10 June 2018</li>
-									</ul>
-									<h3>11 Tips to Help You Get New Clients Through Cold Calling</h3>
-									<p>Compellingly embrace empowered e-business after user friendly intellectual capital. Interactively front-end.</p>
-								</div>
-							</div>
-						</a>
-					</div>
-					<!-- Blog post Item / End -->
-				</div>
-
-
-			</div>
-		</div>
-	</div>
-</div>
-<!-- Recent Blog Posts / End -->
-
-<div class="section border-top padding-top-45 padding-bottom-45">
-	<!-- Logo Carousel -->
-	<div class="container">
-		<div class="row">
-			<div class="col-xl-12">
-				<!-- Carousel -->
 				<div class="col-md-12">
-					<div class="logo-carousel">
-						
-						<div class="carousel-item">
-							<a href="http://acmelogos.com/" target="_blank" title="http://acmelogos.com/"><img src="images/logo-carousel-01.png" alt=""></a>
-						</div>
-						
-						<div class="carousel-item">
-							<a href="http://acmelogos.com/" target="_blank" title="http://acmelogos.com/"><img src="images/logo-carousel-02.png" alt=""></a>
-						</div>
-						
-						<div class="carousel-item">
-							<a href="http://acmelogos.com/" target="_blank" title="http://acmelogos.com/"><img src="images/logo-carousel-03.png" alt=""></a>
-						</div>
-						
-						<div class="carousel-item">
-							<a href="http://acmelogos.com/" target="_blank" title="http://acmelogos.com/"><img src="images/logo-carousel-04.png" alt=""></a>
-						</div>
-						
-						<div class="carousel-item">
-							<a href="http://acmelogos.com/" target="_blank" title="http://acmelogos.com/"><img src="images/logo-carousel-05.png" alt=""></a>
-						</div>
-
-						<div class="carousel-item">
-							<a href="http://acmelogos.com/" target="_blank" title="http://acmelogos.com/"><img src="images/logo-carousel-06.png" alt=""></a>
-						</div>
-
+					<!-- Pagination -->
+					<div class="pagination-container margin-top-60 margin-bottom-60">
+						<nav class="pagination">
+							<ul>
+								<li class="pagination-arrow"><a href="#"><i class="icon-material-outline-keyboard-arrow-left"></i></a></li>
+								<li><a href="#">1</a></li>
+								<li><a href="#" class="current-page">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li class="pagination-arrow"><a href="#"><i class="icon-material-outline-keyboard-arrow-right"></i></a></li>
+							</ul>
+						</nav>
 					</div>
 				</div>
-				<!-- Carousel / End -->
 			</div>
+			<!-- Pagination / End -->
+
 		</div>
 	</div>
 </div>
+
 
 <!-- Footer
 ================================================== -->
@@ -905,7 +654,6 @@
 </div>
 <!-- Wrapper / End -->
 
-
 <!-- Scripts
 ================================================== -->
 <script src="js/jquery-3.3.1.min.js"></script>
@@ -921,7 +669,7 @@
 <script src="js/magnific-popup.min.js"></script>
 <script src="js/slick.min.js"></script>
 <script src="js/custom.js"></script>
-<script src="Scripts/CrawlAPI.js"></script>
+<script src="Scripts/Search.js"></script>
 <!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
 <script>
 // Snackbar for user status switcher
@@ -938,7 +686,6 @@ $('#snackbar-user-status label').click(function() {
 }); 
 </script>
 
-
 <!-- Google Autocomplete -->
 <script>
 	function initAutocomplete() {
@@ -950,23 +697,11 @@ $('#snackbar-user-status label').click(function() {
 		 var input = document.getElementById('autocomplete-input');
 		 var autocomplete = new google.maps.places.Autocomplete(input, options);
 	}
-
-	function searchResult(){
-		query = document.getElementById('intro-keywords').value;
-		window.location.href = "course.html?q="+ query;
-	}
-
-	// Autocomplete adjustment for homepage
-	if ($('.intro-banner-search-form')[0]) {
-	    setTimeout(function(){ 
-	        $(".pac-container").prependTo(".intro-search-field.with-autocomplete");
-	    }, 300);
-	}
-
 </script>
 
-<!-- Google API -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgeuuDfRlweIs7D6uo4wdIHVvJ0LonQ6g&libraries=places&callback=initAutocomplete"></script>
+<!-- Google API & Maps -->
+<!-- Geting an API Key: https://developers.google.com/maps/documentation/javascript/get-api-key -->
+<script src="https://maps.googleapis.com/maps/api/js?key=&libraries=places"></script>
 
 </body>
 </html>
