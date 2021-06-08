@@ -379,55 +379,19 @@
 				<!-- Category -->
 				<div class="sidebar-widget">
 					<h3>Category</h3>
-					<select class="selectpicker" multiple data-selected-text-format="count" data-size="7" title="All Categories">
-						<option>Accounting and Finance</option>
-						<option>Clerical & Data Entry</option>
-						<option>Counseling</option>
-						<option>Court Administration</option>
-						<option>Human Resources</option>
-						<option>Investigative</option>
-						<option>IT and Computers</option>
-						<option>Law Enforcement</option>
-						<option>Management</option>
-						<option>Miscellaneous</option>
-						<option>Public Relations</option>
+					<select id="listoffer" class="selectpicker" data-selected-text-format="count" data-size="7" title="All Categories">
+						
 					</select>
 				</div>
 				
-				<!-- Job Types -->
-				<div class="sidebar-widget">
-					<h3>Job Type</h3>
-
-					<div class="switches-list">
-						<div class="switch-container">
-							<label class="switch"><input type="checkbox"><span class="switch-button"></span> Freelance</label>
-						</div>
-
-						<div class="switch-container">
-							<label class="switch"><input type="checkbox"><span class="switch-button"></span> Full Time</label>
-						</div>
-
-						<div class="switch-container">
-							<label class="switch"><input type="checkbox"><span class="switch-button"></span> Part Time</label>
-						</div>
-
-						<div class="switch-container">
-							<label class="switch"><input type="checkbox"><span class="switch-button"></span> Internship</label>
-						</div>
-						<div class="switch-container">
-							<label class="switch"><input type="checkbox"><span class="switch-button"></span> Temporary</label>
-						</div>
-					</div>
-
-				</div>
 
 				<!-- Salary -->
-				<div class="sidebar-widget">
+				<div id='rangeslider' class="sidebar-widget">
 					<h3>Salary</h3>
 					<div class="margin-top-55"></div>
 
 					<!-- Range Slider -->
-					<input class="range-slider" type="text" value="" data-slider-currency="$" data-slider-min="1500" data-slider-max="15000" data-slider-step="100" data-slider-value="[1500,15000]"/>
+					<input id="rangeslider" class="range-slider" type="text" value="" data-slider-min="1968" data-slider-max="243340" data-slider-step="100" data-slider-value="[1968,243340]"/>
 				</div>
 
 				<!-- Tags -->
@@ -701,7 +665,7 @@ $('#snackbar-user-status label').click(function() {
 
 <!-- Google API & Maps -->
 <!-- Geting an API Key: https://developers.google.com/maps/documentation/javascript/get-api-key -->
-<script src="https://maps.googleapis.com/maps/api/js?key=&libraries=places"></script>
+
 
 </body>
 </html>
