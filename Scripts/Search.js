@@ -1,6 +1,6 @@
 var lst_skill = [];
 var lst_offer = [];
-var lst_enroll = []
+
 var lst_sub = [];
 $(document).ready(function(){
     q = window.location.href.split('?q=')[1]
@@ -26,9 +26,7 @@ $(document).ready(function(){
                     lst_skill.push(result.result.courses[i]._source.skill_gain.split(','));
                 }
                 lst_offer.push(result.result.courses[i]._source.offer_by);
-                if(result.result.courses[i]._source.enrolled != null){
-                    lst_enroll.push(result.result.courses[i]._source.enrolled.split(',')[0] + result.result.courses[i]._source.enrolled.split(',')[1])
-                }
+                
                 
                 lst_sub.push(result.result.courses[i]._source.subtitle.split(','));
 
@@ -120,10 +118,6 @@ function offer_tag(){
     //     </a>
     // </li>
     
-}
-function enroll_tag(){
-    max =  lst_enroll.sort(function(a, b){return b - a})[0]
-    min =  lst_enroll.sort(function(a, b){return a - b})[0]
 }
 function sub_tag(){
     struc = calculate_list(lst_sub)
