@@ -1,0 +1,401 @@
+<head>
+    <style>
+        ::-webkit-scrollbar {
+            width: 2px;
+            height: 2px;
+        }
+
+        ::-webkit-scrollbar-button {
+            width: 2px;
+            height: 2px;
+        }
+
+        div {
+            box-sizing: border-box;
+        }
+
+
+        .horizontal-scroll-wrapper {
+            position: absolute;
+            display: block;
+            top: 0;
+            left: 0;
+            width: 80px;
+            max-height: 500px;
+            margin: 0;
+            background: #abc;
+            overflow-y: auto;
+            overflow-x: hidden;
+            transform: rotate(-90deg) translateY(-80px);
+            transform-origin: right top;
+        }
+
+        .horizontal-scroll-wrapper>div {
+            display: block;
+            padding: 5px;
+            background: #cab;
+            transform: rotate(90deg);
+            transform-origin: right top;
+        }
+
+        .squares {
+            padding: 60px 0 0 0;
+        }
+
+        .squares>div {
+            width: 60px;
+            height: 60px;
+            margin: 10px;
+        }
+
+        .rectangles {
+            top: 100px;
+            padding: 100px 0 0 0;
+        }
+
+        .rectangles>div {
+            width: 140px;
+            height: 60px;
+            margin: 50px 10px;
+            padding: 5px;
+            background: #cab;
+            transform: rotate(90deg) translateY(80px);
+            transform-origin: right top;
+        }
+    </style>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/style_detailCourse.css" rel="stylesheet" />
+    <!-- <link href="Content/danhcss.css" rel="stylesheet" /> -->
+    <link href="Content/menubar.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="main__content__header">
+        <div class="Navbar">
+            <a href="/">
+                <div class="Navbar__logo">
+                    <img src="" alt="logo">
+                </div>
+            </a>
+            <ul class="Navbar__nav">
+                <li class=""><a href="/">Trang chủ</a></li>
+                <li class=""><a href="lda_sample_training.html">Code LDA</a></li>
+                <li class=""><a href="slides.html">Slide thuyết trình</a></li>
+
+                
+            </ul>
+            <div class="search-container">
+                <input id="input_course" type="text" placeholder="Tìm kiếm">
+                <a class="search-button"><i class="fa fa-search"></i></a>
+            </div>
+            <div class="Navbar__form">
+
+                <div class="Navbar__form__button">
+                    <button type="button" class="btn-dez" style="padding:3px 20px"><a>Courses For You</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-job-detail page-job-detail_no-background">
+        <div class="container-fluid page-foreground">
+            <div class="wrapper-job-detail-header">
+                <!--/ Block: SHARE THIS -->
+                <!-- Section: HEADER -->
+                <section class="page-job-detail__header ">
+                    <div class="box box-md" style="padding: 0 0 20px 0">
+                        <div class="absolute-right premium-popover-trigger"></div>
+                        <div class="row">
+                            <!-- Employer Logo -->
+                            <div class="col-md-2 col-logo">
+                                <span class="center-block text-center logo-wrapper">
+                                    <a class="track-event clickable" data-evt-type="view-other-jobs">
+                                        <img src="https://images.vietnamworks.com/pictureofcompany/91/10930831.png"
+                                            alt="Việc làm Công Ty Cổ Phần Thương Mại AICA HPL tuyển dụng"
+                                            class="logo img-responsive">
+                                    </a>
+                                </span>
+                            </div>
+                            <!-- Job Header Info -->
+                            <div class="col-md-10 col-content-wrapper">
+                                <div class="row">
+                                    <div class="col-lg-9 col-md-9 col-content">
+                                        <div id="infoCourse" class="job-header-info">
+                                            <h1 id="courseTitle" class="job-title"></h1>
+                                            <div class="row">
+                                                <div class="col-sm-12 company-name">
+                                                    <a class="track-event" data-evt-type="view-other-jobs">
+                                                    </a>
+                                                </div>
+                                                <div class="col-sm-12 location-name">
+                                                    <span class="company-location">
+                                                        Ngôn ngữ: <a class="lang"></a>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <span class="level">Cấp độ <a></a></span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Hide this in mobile-->
+                                    <!-- TODO: Use another class for case "not authenticated" -->
+                                    <div class="col-lg-3 col-md-3 col-btn  ">
+                                        <div class="row">
+                                            <div class="col-xs-6 col-xs-push-6 col-md-12 col-md-push-0">
+                                                <button type="button"
+                                                    class="btn btn-primary btn-block btn-apply track-event"
+                                                    data-evt-type="apply" onclick="initApplyForm();">
+                                                    Nộp Đơn
+                                                </button>
+                                            </div>
+                                            <div
+                                                class="col-xs-6 col-xs-pull-6 col-md-12 col-md-pull-0 save-job-wrapper">
+                                                <button
+                                                    class="btn btn-primary btn-outline btn-block btn-save btn-save-job track-event"
+                                                    data-evt-type="save-job">
+                                                    <span class="icon-heart-thin m-r-xs"></span>
+                                                    Lưu việc làm
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+            <section class="page-job-detail__detail">
+                <!-- Tabs -->
+                <ul class="nav nav-tabs three-tabs" role="tablist">
+                    <li role="presentation" class="active animated fadeIn">
+                        <a href="#job-info" data-toggle="tab">
+                            <span class="hidden-sm hidden-xs">Thông tin</span>
+                            <span class="visible-sm visible-xs">Thông tin</span>
+                        </a>
+                    </li>
+                    <li class="animated fadeIn" role="presentation ">
+                        <a href="#company-info" class="track-event" data-evt-type="view-tab-cominfo" role="tab"
+                            data-toggle="tab">
+                            <span class="hidden-sm hidden-xs">Nội dung học</span>
+
+                        </a>
+                    </li>
+                    <li class="animated fadeIn" role="presentation">
+                        <a href="#company-job" role="tab" data-toggle="tab">
+                            <span class="hidden-sm hidden-xs">Đánh giá khóa học (AI)</span>
+
+                        </a>
+                    </li>
+
+                    <!-- Section: KYNA COURSES -->
+                    <li class="kyna-tab animated fadeIn" role="presentation">
+                        <a id="job-tab" onclick="jobtab();" href="#kyna" class="track-event"
+                            data-evt-type="view-tab-course-recommend" role="tab" data-toggle="tab">
+                            <span class="hidden-sm hidden-xs">Công việc phù hợp</span>
+                            <span class="visible-sm visible-xs">công việc</span>
+                            <span class="label label-sm label-danger m-t-n-sm label__new-tag">MỚI</span>
+                        </a>
+                    </li>
+                    <!--/ Section: KYNA COURSES -->
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane tab-pane-job-info active box box-md animated fadeIn"
+                        id="job-info">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12 tab-sidebar">
+                                <div class="mobile-box" style="margin-top: 30px;">
+                                    <!-- Box Summary -->
+                                    <div class="box-summary link-list">
+                                        <div class="row summary-item">
+                                            <div class="col-xs-2 summary-icon">
+                                                <span class="icon icon-date-posted"></span>
+                                            </div>
+                                            <div class="col-xs-10 summary-content">
+                                                <span class="content-label">Ngày Đăng Tuyển</span>
+                                                <span class="content">
+                                                    22/12/2020
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="row summary-item">
+                                            <div class="col-xs-2 summary-icon">
+                                                <span class="icon icon-experience"></span>
+                                            </div>
+                                            <div class="col-xs-10 summary-content">
+                                                <span class="content-label">Cấp Bậc</span>
+                                                <span class="content">
+                                                    Nhân viên
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="row summary-item">
+                                            <div class="col-xs-2 summary-icon">
+                                                <span class="icon icon-category-box"></span>
+                                            </div>
+                                            <div class="col-xs-10 summary-content">
+                                                <span class="content-label">Ngành Nghề</span>
+                                                <span class="content">
+                                                    <a href="https://www.vietnamworks.com/ban-hang-jobs-i33-vn"
+                                                        title="Jobs in Bán hàng">Bán hàng
+                                                    </a>,&nbsp; <a
+                                                        href="https://www.vietnamworks.com/ban-hang-ky-thuat-jobs-i34-vn"
+                                                        title="Jobs in Bán hàng kỹ thuật">Bán hàng kỹ thuật
+                                                    </a>,&nbsp; <a
+                                                        href="https://www.vietnamworks.com/hoach-dinh-du-an-jobs-i69-vn"
+                                                        title="Jobs in Hoạch định/Dự án">Hoạch định/Dự án
+                                                    </a> </span>
+                                            </div>
+                                        </div>
+                                        <div class="row summary-item">
+                                            <div class="col-xs-2 summary-icon">
+                                                <span class="icon-flag-thin"></span>
+                                            </div>
+                                            <div class="col-xs-10 summary-content">
+                                                <span class="content-label">Kỹ Năng</span>
+                                                <span class="content">
+                                                    Kinh Doanh, Kinh Doanh Dự Án, Tiếng Anh, Tiếng Nhật, Dự Án
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="row summary-item">
+                                            <div class="col-xs-2 summary-icon">
+                                                <span class="icon-language"></span>
+                                            </div>
+                                            <div class="col-xs-10 summary-content">
+                                                <span class="content-label">Ngôn Ngữ Trình Bày Hồ Sơ</span>
+                                                <span class="content">
+                                                    Bất kỳ
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/ Box Summary -->
+                                    <!--/ Box Jobs loving -->
+
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-8  col-sm-12 tab-main-content">
+
+                                <!-- Job Description-->
+                                <div class="job-description mobile-box">
+                                    <h2>Về khóa học</h2>
+                                    <div class="description"></div>
+
+                                </div>
+
+                            </div>
+                            <!--/ Job Description-->
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane tab-pane-jobs box box-md animated fadeIn" id="company-job"
+                        hidden="">
+
+                    </div>
+
+                    <!-- Section: KYNA COURSES -->
+                    <div role="tabpanel" class="tab-pane tab-pane-jobs box box-md animated fadeIn" id="kyna">
+
+                    </div>
+                </div>
+
+
+                <!--/ KYNA COURSES -->
+
+            </section>
+        </div>
+
+    </div>
+
+    <!-- <div class="horizontal-scroll-wrapper  rectangles">
+        <div>item 1</div>
+        <div>item 2</div>
+        <div>item 3</div>
+        <div>item 4</div>
+        <div>item 5</div>
+        <div>item 6</div>
+        <div>item 7</div>
+        <div>item 8</div>
+    </div> -->
+</body>
+<script src="Scripts/jquery-3.4.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<script>for (var i = 0; i < 6; i++) {
+        document.getElementById('kyna').innerHTML += '<div class="column setHidden"> <div class="column-content linear-background"></div></div>'
+    }
+    // document.getElementById('infoCourse').innerHTML = '<h1 id="courseTitle" class="job-title linear-background"></h1>'+
+    //                                             '<div class="row">'+
+    //                                                 '<div class="col-sm-12 company-name "><a class="linear-background"></a></div>'+
+    //                                                 '<div class="col-sm-12 location-name"><span class="company-location"><a class="lang linear-background"></a></span></div>'+
+
+    //                                             '</div>'+
+    //                                             '<div class="row">'+
+    //                                                 '<div class="col-sm-12 ">' +
+    //                                                     '<span class="level linear-background"><a></a></span>'
+    //                                                 '</div>'
+    //                                             '</div>';
+
+</script>
+
+<script>
+    let _coursera = {};
+    var urlString = window.location.href;
+    var courseCode = urlString.split("=")[1].split("&")[0];
+    var courseType = urlString.split("=")[2];
+    $.getJSON("https://raw.githubusercontent.com/danh9a99/API/main/export_data_coursera_classcentral_Final.json", function (json) {
+
+        //Show thông tin khóa học đã chọn
+        document.getElementById('courseTitle').innerText = json.coursera[courseType][courseCode].name;
+        document.querySelector('.logo').setAttribute('src', json.coursera[courseType][courseCode].image);
+        document.querySelector('.lang').innerText = json.coursera[courseType][courseCode].language;
+        if (courseType == "specializations") {
+            document.querySelector('.description').innerText = json.coursera[courseType][courseCode].about_specialization;
+        }
+        if (courseType == "professional_certificates") {
+            document.querySelector('.description').innerText = json.coursera[courseType][courseCode].about_professional_certificate;
+        }
+        if (courseType == "learn") {
+            document.querySelector('.description').innerText = json.coursera[courseType][courseCode].about;
+        }
+        document.querySelector('.company-name a').innerText = json.coursera[courseType][courseCode].partner;
+        document.querySelector('.level a').innerText = json.coursera[courseType][courseCode].level;
+        $(".job-title .linear-background").hide();
+
+    });
+    function jobtab() {
+            var keyword = courseCode;
+            $.ajax({
+                url: "https://wrapapi.com/use/bapp-it17/itviec/b_it/2.0.2",
+                method: "POST",
+                data: {
+                    "wrapAPIKey": "j751CwjyTl5L6re4c1SiUWiKaGtWJlb7",
+                    "jobInput": keyword
+                }
+            }).done(function (data) {
+                for (var i = 0; i < data.data.itviec.length; i++) {
+                    document.querySelector('#kyna').innerHTML += '<div class="column" id="specializations"><div  class="column-content"><img  src="' + data.data.itviec[i].jobImage + '" alt="Image document" />' +
+                        '<h3><a target="_blank" href="https://itviec.com' + data.data.itviec[i].jobLink + '">' + data.data.itviec[i].jobTitle + '</a> </h3>' +
+                        '<div class="text-job-description">' + data.data.itviec[i].jobDescription + '</div>' +
+                        '<hr>' +
+                        '<div class="text-content"><i  class="fa fa-globe"></i> ' + data.data.itviec[i].jobLocation + '</div  > ' +
+
+                        '<div class="text-content"><i class="fa fa-user" aria-hidden="true"></i>' + data.data.itviec[i].postDate + '</div> ';
+
+                    if (i == 5) {
+                        break;
+                    }
+                }
+                $(".setHidden").hide();
+                document.getElementById('job-tab').removeAttribute("onclick");
+            });
+    }
+
+</script>

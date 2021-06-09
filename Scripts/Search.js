@@ -16,6 +16,11 @@ $(document).ready(function(){
              "queries" : query_string
         },
         success : function (result){
+            if(result.suggest_word !== result.word_search + ' '){
+                document.getElementById('searchsuggest').innerHTML = '<h4>Are you looking for <strong style="color:blue"><i>'+result.suggest_word+'</i></strong></h4>'
+                document.getElementById('searchword').innerHTML = '<h4>Search alternatives for <i style="color: blue">'+result.word_search+'</i></h4>'
+            }
+            
             for (var i = 0; i < result.result.courses.length; i++){
                 if(result.result.courses[i]._source.skill_gain != null){
                     lst_skill.push(result.result.courses[i]._source.skill_gain.split(','));

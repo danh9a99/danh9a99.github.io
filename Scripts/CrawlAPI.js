@@ -48,7 +48,7 @@ $(document).ready(function(){
         success: function (data) {
           for(var index = 0; index < data.results.length; index++){
           
-              document.getElementById('post').innerHTML += '<a href="single-job-page.html" class="job-listing">' +
+              document.getElementById('post').innerHTML += '<a id="'+data.results[index].course_tag+'" onclick="detailCourse(this)" class="job-listing">' +
               '<div class="job-listing-details">' +
               '<div class="job-listing-company-logo">' +
 							  '<img src="'+data.results[index].course_image+'"  style="width:55;height:55px;" alt="">' +
