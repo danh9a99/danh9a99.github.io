@@ -141,11 +141,6 @@ function sub_tag(){
 				'<input type="checkbox" id="chekcbox'+temp+'">' +
 				'<label for="chekcbox'+temp+'"><span class="checkbox-icon"></span>'+j.skill+'<span class="nav-tag">'+j.count+'</span></label>' +
                 '</div></li>'
-                    // <a href="dashboard-manage-jobs.html">'+j.skill+' <span class="nav-tag">'+j.count+'</span></a>
-                '<div class="checkbox">' +
-                    '<input type="checkbox" id="chekcbox1" checked>' +
-                    '<label for="chekcbox1"><span class="checkbox-icon"></span>'+j.skill+'<span class="nav-tag">'+j.count+'</span></label>' +
-                '</div>'
                 temp++;
             }
         }
