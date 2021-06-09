@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/colors/blue.css">
 
+
+
 </head>
 <body class="gray">
 
@@ -352,30 +354,19 @@
 		<div class="col-xl-3 col-lg-4">
 			<div class="sidebar-container">
 				
-				<!-- Location -->
-				<div class="sidebar-widget">
-					<h3>Location</h3>
-					<div class="input-with-icon">
-						<div id="autocomplete-container">
-							<input id="autocomplete-input" type="text" placeholder="Location">
-						</div>
-						<i class="icon-material-outline-location-on"></i>
-					</div>
+				<!-- Salary -->
+				<div class="dashboard-nav bootstrap-select">
+					<ul>
+						<li><a href="#" style="font-size: 15px; padding-left: 16px; box-shadow: 0.5px 0.5px 0.5px 0 rgba(0.2, 0.2, 0.2, 0.2)"><i class="icon-material-outline-speaker-notes"></i> Order by <strong>Subtitle</strong></a>
+							<ul id='dropsub'>
+								
+							</ul>	
+						</li>
+	
+					</ul>
 				</div>
 
-				<!-- Keywords -->
-				<div class="sidebar-widget">
-					<h3>Keywords</h3>
-					<div class="keywords-container">
-						<div class="keyword-input-container">
-							<input type="text" class="keyword-input" placeholder="e.g. job title"/>
-							<button class="keyword-input-button ripple-effect"><i class="icon-material-outline-add"></i></button>
-						</div>
-						<div class="keywords-list"><!-- keywords go here --></div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-				
+
 				<!-- Category -->
 				<div class="sidebar-widget">
 					<h3>Category</h3>
@@ -385,15 +376,9 @@
 				</div>
 				
 
-				<!-- Salary -->
-				<div id='rangeslider' class="sidebar-widget">
-					<h3>Salary</h3>
-					<div class="margin-top-55"></div>
-
-					<!-- Range Slider -->
-					<input id="rangeslider" class="range-slider" type="text" value="" data-slider-min="1968" data-slider-max="243340" data-slider-step="100" data-slider-value="[1968,243340]"/>
-				</div>
-
+				
+					
+				
 				<!-- Tags -->
 				<div class="sidebar-widget">
 					<h3>Tags</h3>
@@ -634,6 +619,8 @@
 <script src="js/slick.min.js"></script>
 <script src="js/custom.js"></script>
 <script src="Scripts/Search.js"></script>
+
+
 <!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
 <script>
 // Snackbar for user status switcher

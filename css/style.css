@@ -13274,14 +13274,15 @@ a.dashboard-responsive-nav-trigger { display: none; }
 	padding: 0 0 18px 0;
 	line-height: 24px;
 	opacity: 1;
-	max-height: 200px;
+	max-height: 400px;
 	pointer-events: all;
+	overflow: scroll;
 }
 
 .dashboard-nav ul li ul li {
 	background-color: transparent;
 	border: none;
-	padding-left: 63px;
+	padding-left: 30px;
 	position: relative;
 	margin: 0;
 }

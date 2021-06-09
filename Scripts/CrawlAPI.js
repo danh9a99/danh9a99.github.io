@@ -23,9 +23,9 @@ function generateCourse(offset){
 					  '</div>'+
             '<div class="job-listing-footer">' +
 						'<ul>'+
-							'<li><i class="icon-material-outline-location-on"></i> '+data.results[index].language+'</li>'+
-							'<li><i class="icon-material-outline-business-center"></i> '+data.results[index].enrolled+'</li>'+
-						'	<li><i class="icon-material-outline-account-balance-wallet"></i> $35000-$38000</li>'+
+							'<li><i class="icon-material-outline-language"></i> '+data.results[index].language+'</li>'+
+							'<li><i class="icon-material-outline-person-pin"></i> '+data.results[index].enrolled+'</li>'+
+						'	<li><i class="icon-material-outline-star-border"></i> '+data.results[index].rating+'</li>'+
 							'<li><i class="icon-material-outline-access-time"></i> 2 days ago</li>' +
 					'	</ul>'
 					'</div>'+
@@ -62,9 +62,9 @@ $(document).ready(function(){
 					  '</div>'+
             '<div class="job-listing-footer">' +
 						'<ul>'+
-							'<li><i class="icon-material-outline-location-on"></i> '+data.results[index].language+'</li>'+
-							'<li><i class="icon-material-outline-business-center"></i> '+data.results[index].enrolled+'</li>'+
-						'	<li><i class="icon-material-outline-account-balance-wallet"></i> $35000-$38000</li>'+
+							'<li><i class="icon-material-outline-language"></i> '+data.results[index].language+'</li>'+
+							'<li><i class="icon-material-outline-person-pin"></i> '+data.results[index].enrolled+'</li>'+
+						'	<li><i class="icon-material-outline-star-border"></i> '+data.results[index].rating+'</li>'+
 							'<li><i class="icon-material-outline-access-time"></i> 2 days ago</li>' +
 					'	</ul>'
 					'</div>'+

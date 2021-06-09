@@ -1,6 +1,7 @@
 var lst_skill = [];
 var lst_offer = [];
 var lst_enroll = []
+var lst_sub = [];
 $(document).ready(function(){
     q = window.location.href.split('?q=')[1]
     let query_string;
@@ -20,7 +21,11 @@ $(document).ready(function(){
                     lst_skill.push(result.result.courses[i]._source.skill_gain.split(','));
                 }
                 lst_offer.push(result.result.courses[i]._source.offer_by);
-                lst_enroll.push(result.result.courses[i]._source.enrolled.split(',')[0] + result.result.courses[i]._source.enrolled.split(',')[1])
+                if(result.result.courses[i]._source.enrolled != null){
+                    lst_enroll.push(result.result.courses[i]._source.enrolled.split(',')[0] + result.result.courses[i]._source.enrolled.split(',')[1])
+                }
+                
+                lst_sub.push(result.result.courses[i]._source.subtitle.split(','));
 
                 document.getElementById('searchresult').innerHTML += '<a href="single-job-page.html" class="job-listing">' +
                 '<div class="job-listing-details">' +
@@ -43,6 +48,7 @@ $(document).ready(function(){
             skill_tag()
             offer_tag()
             enroll_tag()
+            sub_tag()
             
         }
     });
@@ -51,37 +57,7 @@ $(document).ready(function(){
 
 
 function skill_tag(){
-    var struc = []  
-    for(var skill_all of lst_skill){
-        for(var skill_course = 0; skill_course < skill_all.length; skill_course ++){
-            var index = 0
-            if(struc.length == 0){
-                struc.push( {
-                    'skill': skill_all[skill_course],
-                    'count': 1
-                })
-            }
-            else{  
-                while(true){
-                    if(struc.length == index ){
-                        struc.push( {
-                            'skill': skill_all[skill_course],
-                            'count': 1
-                        })
-                        break
-                    }
-                    else if(skill_all[skill_course] == struc[index].skill) {
-                        
-                        struc[index].count += 1;
-                        break
-                       
-                    }   
-                    index += 1;
-                }
-            }
-        }
-    }
-
+    struc = calculate_list(lst_skill)
     lst_temp = []
     for(var struc_index = 0; struc_index < struc.length; struc_index++){
         
@@ -110,7 +86,6 @@ function skill_tag(){
         }
     }
 }
-
 function offer_tag(){
     document.getElementById('listoffer').innerHTML  = ''
     arr = unique(lst_offer)
@@ -142,13 +117,39 @@ function offer_tag(){
     
 }
 function enroll_tag(){
-    console.log(lst_enroll)
     max =  lst_enroll.sort(function(a, b){return b - a})[0]
     min =  lst_enroll.sort(function(a, b){return a - b})[0]
-
-
-    console.log(min)
-    console.log(max)
+}
+function sub_tag(){
+    struc = calculate_list(lst_sub)
+    lst_temp = []
+    for(var struc_index = 0; struc_index < struc.length; struc_index++){
+        
+        lst_temp.push(struc[struc_index].count)
+        
+    }
+    lst_sorted = lst_temp.sort(function(a, b){return b - a})
+    temp = 1
+    for ( var i =0; i<lst_sorted.length;i++){
+        for( var j of struc){
+            if(j.count==lst_sorted[i]){
+                const index = struc.indexOf(j);
+                if (index > -1) {
+                struc.splice(index, 1);
+                }
+                document.getElementById('dropsub').innerHTML += '<li><div class="checkbox">' +
+				'<input type="checkbox" id="chekcbox'+temp+'">' +
+				'<label for="chekcbox'+temp+'"><span class="checkbox-icon"></span>'+j.skill+'<span class="nav-tag">'+j.count+'</span></label>' +
+                '</div></li>'
+                    // <a href="dashboard-manage-jobs.html">'+j.skill+' <span class="nav-tag">'+j.count+'</span></a>
+                '<div class="checkbox">' +
+                    '<input type="checkbox" id="chekcbox1" checked>' +
+                    '<label for="chekcbox1"><span class="checkbox-icon"></span>'+j.skill+'<span class="nav-tag">'+j.count+'</span></label>' +
+                '</div>'
+                temp++;
+            }
+        }
+    }
 }
 
 
@@ -162,3 +163,37 @@ function unique(arr) {
     }
     return newArr
   }
+
+function calculate_list(list){
+    var struc = []  
+    for(var i of list){
+        for(var j = 0; j < i.length; j ++){
+            var index = 0
+            if(struc.length == 0){
+                struc.push( {
+                    'skill': i[j],
+                    'count': 1
+                })
+            }
+            else{  
+                while(true){
+                    if(struc.length == index ){
+                        struc.push( {
+                            'skill': i[j],
+                            'count': 1
+                        })
+                        break
+                    }
+                    else if(i[j] == struc[index].skill) {
+                        
+                        struc[index].count += 1;
+                        break
+                       
+                    }   
+                    index += 1;
+                }
+            }
+        }
+    }
+    return struc;
+}
