@@ -30,7 +30,7 @@ $(document).ready(function(){
                 
                 lst_sub.push(result.result.courses[i]._source.subtitle.split(','));
 
-                document.getElementById('searchresult').innerHTML += '<a href="single-job-page.html" class="job-listing">' +
+                document.getElementById('searchresult').innerHTML += '<a id="'+result.result.courses[i]._source.course_tag+'" onclick="detailCourse(this)" style="cursor:pointer" class="job-listing">' +
                 '<div class="job-listing-details">' +
                     '<div class="job-listing-company-logo">' +
                     '<img src="'+result.result.courses[i]._source.course_image+'" style="width:50px;height:50px;" alt="">' +

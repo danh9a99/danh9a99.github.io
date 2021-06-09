@@ -399,6 +399,9 @@ $('#snackbar-user-status label').click(function() {
 		 var input = document.getElementById('autocomplete-input');
 		 var autocomplete = new google.maps.places.Autocomplete(input, options);
 	}
+	function detailCourse(pram){
+		window.location.href = "detail-course.html?tag="+ pram.id;
+	}
 </script>
 
 <!-- Google API & Maps -->

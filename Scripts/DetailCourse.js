@@ -1,3 +1,4 @@
+lst_review = []
 $(document).ready(function(){
     q = window.location.href.split('?tag=')[1]
     $.ajax({
@@ -6,7 +7,6 @@ $(document).ready(function(){
         contentType:"application/json",
         dataType:"json",
         success : function (result){
-            console.log(result)
             document.getElementById('image').innerHTML = '<a href="single-company-profile.html"><img src="'+result[0].course_image+'" alt=""></a>'
             document.getElementById('headertitle').innerHTML = '<h3>'+result[0].course_title+'</h3>'+
                         '<h5>'+result[0].offer_by+'</h5>'+
@@ -48,7 +48,7 @@ $(document).ready(function(){
                 dataType:"json",
                 success : function (data){
                     for(var i = 0; i<data.length; i ++){
-                        document.getElementById('relatedcourse').innerHTML += '<a href="#" class="job-listing">'+
+                        document.getElementById('relatedcourse').innerHTML += '<a id="'+data[i].course_tag+'" onclick="detailCourse(this)" style="cursor:pointer" class="job-listing">'+
 
                     
                                 '<div class="job-listing-details">'+
@@ -83,24 +83,10 @@ $(document).ready(function(){
             })
             //review
             star = 0
-            for(var review_index = result[0].review.length-1 ; review_index > result[0].review.length - 5; review_index--){
-                
-
-                document.getElementById('review').innerHTML += '<li>'+
-                    '<div class="boxed-list-item">'+
-                        '<div class="item-content">'+
-                            '<h4>'+result[0].review[review_index].reviewer+'</h4>'+
-                            '<div class="item-details margin-top-10">'+
-                                gen_star(result[0].review[review_index].star)+
-                                '<div class="detail-item"><i class="icon-material-outline-date-range"></i>'+result[0].review[review_index].review_date+'</div>'+
-                        ' </div>'+
-                            '<div class="item-description">'+
-                                '<p>'+result[0].review[review_index].review_text+'</p>'+
-                            '</div>'+
-                        '</div>'+
-                    '</div>'+
-                '</li>'
-            }
+            lst_review.push(result[0].review)
+            handlChangePage(0)
+            //
+            document.getElementById('direct').innerHTML = '<a href="'+result[0].course_url+'" class="apply-now-button popup-with-zoom-anim" target="_blank">Go to class <i class="icon-material-outline-arrow-right-alt"></i></a>'
            
         }
     });
@@ -142,4 +128,48 @@ function gen_star(star){
             return star
             break
       }
+}
+
+function handlChangePage(num_pos){
+    document.getElementById('review').innerHTML = ''
+    start = lst_review[0].length - num_pos;
+    end =  start - 5;
+    for(var review_index = start-1 ; review_index >= end; review_index--){
+        document.getElementById('review').innerHTML += '<li>'+
+            '<div class="boxed-list-item">'+
+                '<div class="item-content">'+
+                    '<h4>'+lst_review[0][review_index].reviewer+'</h4>'+
+                    '<div class="item-details margin-top-10">'+
+                        gen_star(lst_review[0][review_index].star)+
+                        '<div class="detail-item"><i class="icon-material-outline-date-range"></i>'+lst_review[0][review_index].review_date+'</div>'+
+                ' </div>'+
+                    '<div class="item-description">'+
+                        '<p>'+lst_review[0][review_index].review_text+'</p>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+        '</li>'
+    }
+}
+
+function previousPageFunc(obj){
+    offsetPrev = document.getElementById('previousClick').getAttribute('value');
+    offsetNext = document.getElementById('nextClick').getAttribute('value');
+    if(offsetPrev != 0){
+      $('.loading').show()
+      handlChangePage(offsetPrev-5)
+      document.getElementById('previousClick').setAttribute('value', parseInt(offsetPrev) - 5)
+      document.getElementById('nextClick').setAttribute('value', parseInt(offsetNext) - 5)
+    }
+  }
+function nextPageFunc(obj){
+    offsetPrev = document.getElementById('previousClick').getAttribute('value');
+    offsetNext = document.getElementById('nextClick').getAttribute('value');
+    if(offsetNext < lst_review[0].length){
+      $('.loading').show()
+      handlChangePage(offsetNext);
+      document.getElementById('previousClick').setAttribute('value', parseInt(offsetPrev) + 5)
+      document.getElementById('nextClick').setAttribute('value', parseInt(offsetNext) + 5)
+    }
+    
 }

@@ -311,8 +311,10 @@
 		<!-- Sidebar -->
 		<div class="col-xl-4 col-lg-4">
 			<div class="sidebar-container">
+				<div id='direct'>
 
-				<a href="#small-dialog" class="apply-now-button popup-with-zoom-anim">Go to class <i class="icon-material-outline-arrow-right-alt"></i></a>
+				</div>
+				
 					
 				<!-- Sidebar Widget -->
 				<div class="sidebar-widget">
@@ -341,9 +343,9 @@
 			<div class="pagination-container margin-top-40 margin-bottom-10">
 				<nav class="pagination">
 					<ul>
-						<li><a href="#" class="ripple-effect current-page">1</a></li>
-						<li><a href="#" class="ripple-effect">2</a></li>
-						<li class="pagination-arrow"><a href="#" class="ripple-effect"><i class="icon-material-outline-keyboard-arrow-right"></i></a></li>
+						<li class="pagination-arrow"><a id="previousClick" value="0" onclick="previousPageFunc(this)"><i class="icon-material-outline-keyboard-arrow-left"></i></a></li>
+				
+						<li class="pagination-arrow"><a id="nextClick" value="5" onclick="nextPageFunc(this)"><i class="icon-material-outline-keyboard-arrow-right"></i></a></li>
 					</ul>
 				</nav>
 			</div>
@@ -514,6 +516,7 @@
 <script src="js/slick.min.js"></script>
 <script src="js/custom.js"></script>
 <script src="Scripts/DetailCourse.js"></script>
+
 <!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
 <script>
 // Snackbar for user status switcher
@@ -535,6 +538,9 @@ $('.copy-url-button').click(function() {
 		text: 'Copied to clipboard!',
 	}); 
 }); 
+function detailCourse(pram){
+		window.location.href = "detail-course.html?tag="+ pram.id;
+	}
 </script>
 
 <!-- Google API & Maps -->
