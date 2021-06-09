@@ -50,7 +50,6 @@ $(document).ready(function(){
             }
             skill_tag()
             offer_tag()
-            enroll_tag()
             sub_tag()
             
         }
