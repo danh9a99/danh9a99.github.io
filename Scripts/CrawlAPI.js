@@ -31,8 +31,7 @@ function generateCourse(offset){
 					'</div>'+
 				  '</a>'
           }
-          $(".setHidden").hide();
-          
+          $('.loading').hide();
         }
         
       });
@@ -70,7 +69,7 @@ $(document).ready(function(){
 					'</div>'+
 				  '</a>'
           }
-          $(".setHidden").hide();
+          $('.loading').hide();
           
         }
         
@@ -87,7 +86,7 @@ function previousPageFunc(obj){
   offsetPrev = document.getElementById('previousClick').getAttribute('value');
   offsetNext = document.getElementById('nextClick').getAttribute('value');
   if(offsetPrev != 0){
-    
+    $('.loading').show()
     generateCourse(offsetPrev)
     document.getElementById('previousClick').setAttribute('value', parseInt(offsetPrev) - 10)
     document.getElementById('nextClick').setAttribute('value', parseInt(offsetNext) - 10)
@@ -99,11 +98,13 @@ function nextPageFunc(obj){
 
 
   if(offsetNext < 1750){
+    $('.loading').show()
     generateCourse(offsetNext);
     document.getElementById('previousClick').setAttribute('value', parseInt(offsetPrev) + 10)
     document.getElementById('nextClick').setAttribute('value', parseInt(offsetNext) + 10)
   }
   
 }
+
 
 

@@ -12,7 +12,7 @@ $(document).ready(function(){
                         '<h5>'+result[0].offer_by+'</h5>'+
                         '<ul>'+
                            ' <li><a href="single-company-profile.html"><i class="icon-material-outline-business"></i> King</a></li>' +
-                            '<li><div class="star-rating" data-rating="4.9"></div></li>' +
+                            '<li>'+gen_star(result[0].rating)+'</li>' +
                             '<li><img class="flag" src="images/flags/gb.svg" alt="">'+result[0].language+'</li>' +
                             '<li><div class="verified-badge-with-title">Verified</div></li>' +
                         '</ul>'
@@ -81,7 +81,65 @@ $(document).ready(function(){
                     
                 }
             })
+            //review
+            star = 0
+            for(var review_index = result[0].review.length-1 ; review_index > result[0].review.length - 5; review_index--){
+                
+
+                document.getElementById('review').innerHTML += '<li>'+
+                    '<div class="boxed-list-item">'+
+                        '<div class="item-content">'+
+                            '<h4>'+result[0].review[review_index].reviewer+'</h4>'+
+                            '<div class="item-details margin-top-10">'+
+                                gen_star(result[0].review[review_index].star)+
+                                '<div class="detail-item"><i class="icon-material-outline-date-range"></i>'+result[0].review[review_index].review_date+'</div>'+
+                        ' </div>'+
+                            '<div class="item-description">'+
+                                '<p>'+result[0].review[review_index].review_text+'</p>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                '</li>'
+            }
+           
         }
     });
    
 })
+
+
+function gen_star(star){
+    if(star < 5 && star > 4){
+        return '<div class="star-rating" data-rating="'+star+'"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star half"></span></div>'
+    }
+    if(star < 4 && star > 3){
+        return '<div class="star-rating" data-rating="'+star+'"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star half"></span><span class="star empty"></span></div>'
+    }
+    if(star < 3 && star > 2){
+        return '<div class="star-rating" data-rating="'+star+'"><span class="star"></span><span class="star"></span><span class="star half"></span><span class="star empty"></span><span class="star empty"></span></div>'
+    }
+    if(star < 2 && star > 1){
+        return '<div class="star-rating" data-rating="'+star+'"><span class="star"></span><span class="star half"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span></div>'
+    }
+
+    switch(star) {
+        case 5:
+            return '<div class="star-rating" data-rating="5.0"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div>'
+            break;
+        case 4:
+            return '<div class="star-rating" data-rating="4.0"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div>'
+            break;
+        case 3:
+            return '<div class="star-rating" data-rating="4.0"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span></div>'
+            break
+        case 2:
+            return '<div class="star-rating" data-rating="2.0"><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span></div>'
+            break
+        case 1:
+            return '<div class="star-rating" data-rating="1.0"><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span></div>'
+            break 
+        default:
+            return star
+            break
+      }
+}
