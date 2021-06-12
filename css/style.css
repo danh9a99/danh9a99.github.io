@@ -325,7 +325,7 @@ header.fullwidth .container {
 #header .right-side {
 	float: right;
 	text-align: right;
-	width: auto;
+	width: 600px;
 	display: inline-block;
 	position: absolute;
 	right: 25px;
