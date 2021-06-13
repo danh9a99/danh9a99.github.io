@@ -12,44 +12,7 @@
 ================================================== -->
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/colors/blue.css">
-
-<style>
-	.autocomplete {
-  /*the container must be positioned relative:*/
-  position: relative;
-  display: inline-block;
-}
-.autocomplete-items {
-  position: absolute;
-  border: 0.5px solid #d4d4d4;
-  border-bottom: none;
-  border-top: none;
-  z-index: 99;
-  /*position the autocomplete items to be the same width as the container:*/
-  top: 100%;
-  left: 0;
-  right: 0;
-  max-height: 500px;
-  overflow:scroll;
-}
-.autocomplete-items div {
-  padding: 10px;
-  cursor: pointer;
-  background-color: #fff;
-  border-bottom: 1px solid #d4d4d4;
-  
-}
-.autocomplete-items div:hover {
-  /*when hovering an item:*/
-  background-color:  #2a41e8;
-  color: white;
-}
-.autocomplete-active {
-  /*when navigating through the items using the arrow keys:*/
-  background-color: DodgerBlue !important;
-  color: #ffffff;
-}
-</style>
+<link rel="stylesheet" href="css/search.css">
 
 </head>
 <body class="gray">
@@ -207,10 +170,6 @@
 					</select>
 				</div>
 				
-
-				
-					
-				
 				<!-- Tags -->
 				<div class="sidebar-widget">
 					<h3>Tags</h3>
@@ -226,14 +185,18 @@
 		<div class="col-xl-9 col-lg-8 content-left-offset">
 
 			<h3 class="page-title">Search Results</h3>
-			<br>
+
 			<div id='searchsuggest'>
 
 			</div>
 			<div id='searchword'>
 
 			</div>
-
+			<br>
+			<div id='keywordfillter' class="keywords-list" style="height: auto;">	
+				
+			</div>
+			<br>
 			<div id='searchresult' class="listings-container compact-list-layout margin-top-35">
 				
 			</div>
@@ -319,7 +282,16 @@ $('#snackbar-user-status label').click(function() {
 		query = document.getElementById('intro-keywords').value;
 		window.location.href = "course.html?q="+ query;
 	}
-
+	function filterOffer(pram){
+		window.location.href += '&offer_by=' + pram.id;
+		
+	}
+	function filterSkill(pram){
+		
+		window.location.href += '&skill_gain=' + pram.id;
+		
+	}
+	
 </script>
 
 <!-- Google API & Maps -->

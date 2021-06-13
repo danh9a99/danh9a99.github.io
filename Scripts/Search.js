@@ -3,17 +3,40 @@ var lst_offer = [];
 var lst_sub = [];
 var lst_search_result = [];
 $(document).ready(function () {
-  q = window.location.href.split("?q=")[1];
-  let query_string;
-  if (q.split("%20").length != 0) {
-    query_string = q.replace("%20", " ");
+  q = window.location.href.split("?q=")[1].split('&offer_by=')[0];
+  let query_string = '';
+  if (q != undefined) {
+    for(var i = 0; i <q.split("%20").length; i++){
+      query_string += q.split("%20")[i] + ' ';
+    }
   }
+  o = window.location.href.split('&offer_by=')[1];
+  let offer_string = '';
+  if (o != undefined){
+    if(o.split('&').length != undefined){
+      for(var i = 0; i <o.split('&')[0].split("%20").length; i++){
+        offer_string += o.split('&')[0].split("%20")[i] + ' ';
+        }
+    }    
+  }
+  s = window.location.href.split('&skill_gain=')[1];
+  let skill_string = '';
+  if(s != undefined){
+    if(s.split('&').length != undefined){
+      for(var i = 0; i <s.split('&')[0].split("%20").length; i++){
+        skill_string += s.split('&')[0].split("%20")[i] + ' ';
+        }
+    }
+  }
+
+  document.getElementById('keywordfillter').innerHTML = '<span class="keyword"><span class="keyword-remove"></span><span class="keyword-text">'+offer_string.trim()+'</span></span>'
+  document.getElementById('keywordfillter').innerHTML += '<span class="keyword"><span class="keyword-remove"></span><span class="keyword-text">'+skill_string.trim()+'</span></span>'
   $.ajax({
     url: "http://127.0.0.1:8000/api/course-list",
     type: "POST",
     dataType: "json",
     data: {
-      queries: q,
+      queries: query_string.trim(),
     },
     success: function (result) {
       if (result.suggest_word !== result.word_search + " ") {
@@ -26,49 +49,59 @@ $(document).ready(function () {
           result.word_search +
           "</i></h4>";
       }
-
+      
       for (var i = 0; i < result.result.courses.length; i++) {
-        if (result.result.courses[i]._source.skill_gain != null) {
-          lst_skill.push(
-            result.result.courses[i]._source.skill_gain.split(",")
-          );
+        if(result.result.courses[i]._source.offer_by==null){
+          result.result.courses[i]._source.offer_by = 'None'
         }
-        lst_offer.push(result.result.courses[i]._source.offer_by);
-
-        lst_sub.push(result.result.courses[i]._source.subtitle.split(","));
-
-        document.getElementById("searchresult").innerHTML +=
-          '<a id="' +
-          result.result.courses[i]._source.course_tag +
-          '" onclick="detailCourse(this)" style="cursor:pointer" class="job-listing">' +
-          '<div class="job-listing-details">' +
-          '<div class="job-listing-company-logo">' +
-          '<img src="' +
-          result.result.courses[i]._source.course_image +
-          '" style="width:50px;height:50px;" alt="">' +
-          "</div>" +
-          '<div class="job-listing-description">' +
-          '<h3 class="job-listing-title">' +
-          result.result.courses[i]._source.course_title +
-          "</h3>" +
-          '<div class="job-listing-footer">' +
-          "<ul>" +
-          '<li><i class="icon-material-outline-location-city"></i> ' +
-          result.result.courses[i]._source.offer_by +
-          ' <div class="verified-badge" title="Verified Employer" data-tippy-placement="top"></div></li>' +
-          '<li><i class="icon-material-outline-language"></i> ' +
-          result.result.courses[i]._source.language +
-          "</li>" +
-          '<li><i class="icon-material-outline-star-border"></i> ' +
-          result.result.courses[i]._source.rating +
-          "</li>" +
-          '<li><i class="icon-material-outline-person-pin"></i> ' +
-          result.result.courses[i]._source.enrolled +
-          "</li>" +
-          "</ul>" +
-          "<div>" +
-          "</div>" +
-          "</div>";
+        if(result.result.courses[i]._source.skill_gain==null){
+          result.result.courses[i]._source.skill_gain = 'None'
+        }
+        if((result.result.courses[i]._source.offer_by.indexOf(offer_string.trim()) > -1 || offer_string == '')
+          && (result.result.courses[i]._source.skill_gain.indexOf(skill_string.trim()) > -1 || skill_string == '')){
+          if (result.result.courses[i]._source.skill_gain != null) {
+            lst_skill.push(
+              result.result.courses[i]._source.skill_gain.split(",")
+            );
+          }
+          lst_offer.push(result.result.courses[i]._source.offer_by);
+  
+          lst_sub.push(result.result.courses[i]._source.subtitle.split(","));
+  
+          document.getElementById("searchresult").innerHTML +=
+            '<a id="' +
+            result.result.courses[i]._source.course_tag +
+            '" onclick="detailCourse(this)" style="cursor:pointer" class="job-listing">' +
+            '<div class="job-listing-details">' +
+            '<div class="job-listing-company-logo">' +
+            '<img src="' +
+            result.result.courses[i]._source.course_image +
+            '" style="width:50px;height:50px;" alt="">' +
+            "</div>" +
+            '<div class="job-listing-description">' +
+            '<h3 class="job-listing-title">' +
+            result.result.courses[i]._source.course_title +
+            "</h3>" +
+            '<div class="job-listing-footer">' +
+            "<ul>" +
+            '<li><i class="icon-material-outline-location-city"></i> ' +
+            result.result.courses[i]._source.offer_by +
+            ' <div class="verified-badge" title="Verified Employer" data-tippy-placement="top"></div></li>' +
+            '<li><i class="icon-material-outline-language"></i> ' +
+            result.result.courses[i]._source.language +
+            "</li>" +
+            '<li><i class="icon-material-outline-star-border"></i> ' +
+            result.result.courses[i]._source.rating +
+            "</li>" +
+            '<li><i class="icon-material-outline-person-pin"></i> ' +
+            result.result.courses[i]._source.enrolled +
+            "</li>" +
+            "</ul>" +
+            "<div>" +
+            "</div>" +
+            "</div>";
+        }
+        
       }
       skill_tag();
       offer_tag();
@@ -96,12 +129,12 @@ function skill_tag() {
         }
         document.getElementById("skillgain").innerHTML +=
           '<div class="tag">' +
-          '<input type="checkbox" id="tag"' +
-          temp +
-          "/>" +
-          '<label for="tag1">' +
-          j.skill +
-          "</label>" +
+          '<a onclick="filterSkill(this)" id="'+j.skill+'">' +
+            '<input type="checkbox" id="checkSkill" />' +
+            '<label for="tag1">' +
+            j.skill +
+            "</label>" +
+          '</a>' +
           "</div>";
         temp++;
       }
@@ -112,6 +145,9 @@ function skill_tag() {
 }
 function offer_tag() {
   document.getElementById("listoffer").innerHTML = "";
+  if(lst_offer.length == 1){
+    document.getElementById("listoffer").setAttribute('title',lst_offer[0])
+  }
   arr = unique(lst_offer);
   select = document.getElementById("listoffer");
   $("ul.dropdown-menu").attr("id", "dropdown");
@@ -127,7 +163,7 @@ function offer_tag() {
       '<li data-original-index="' +
       i +
       '">' +
-      '<a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">' +
+      '<a tabindex="0" id="'+arr[i]+'" onclick="filterOffer(this)" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">' +
       '<span class="text">' +
       arr[i] +
       "</span>" +
@@ -219,6 +255,7 @@ function calculate_list(list) {
   }
   return struc;
 }
+
 
 //search-sub
 $("#intro-keywords").keyup(function () {
@@ -445,3 +482,5 @@ $("#intro-keywords-main").keyup(function () {
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+

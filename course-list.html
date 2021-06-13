@@ -12,6 +12,8 @@
 ================================================== -->
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/colors/blue.css">
+<link rel="stylesheet" href="css/search.css">
+
 <style>
 	/* Absolute Center CSS Spinner */
 .loading {
@@ -132,37 +134,7 @@
     transform: rotate(360deg);
   }
 }
-.autocomplete {
-  /*the container must be positioned relative:*/
-  position: relative;
-  display: inline-block;
-}
-.autocomplete-items {
-  position: absolute;
-  border: 1px solid #d4d4d4;
-  border-bottom: none;
-  border-top: none;
-  z-index: 99;
-  /*position the autocomplete items to be the same width as the container:*/
-  top: 100%;
-  left: 0;
-  right: 0;
-}
-.autocomplete-items div {
-  padding: 10px;
-  cursor: pointer;
-  background-color: #fff;
-  border-bottom: 1px solid #d4d4d4;
-}
-.autocomplete-items div:hover {
-  /*when hovering an item:*/
-  background-color: #e9e9e9;
-}
-.autocomplete-active {
-  /*when navigating through the items using the arrow keys:*/
-  background-color: DodgerBlue !important;
-  color: #ffffff;
-}
+
 </style>
 </head>
 <body class="gray">
@@ -490,6 +462,7 @@
 <script src="js/custom.js"></script>
 <!-- <script src="js/pagination.min.js"></script> -->
 <script src="Scripts/CrawlAPI.js"></script>
+<script src="Scripts/Search.js"></script>
 <!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
 <script>
 // Snackbar for user status switcher
@@ -520,6 +493,10 @@ $('#snackbar-user-status label').click(function() {
 	}
 	function detailCourse(pram){
 		window.location.href = "detail-course.html?tag="+ pram.id;
+	}
+	function searchResult(){
+		query = document.getElementById('intro-keywords').value;
+		window.location.href = "course.html?q="+ query;
 	}
 </script>
 

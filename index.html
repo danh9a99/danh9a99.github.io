@@ -196,12 +196,7 @@
 
 	</div>
 	
-	<!-- Video Container -->
-	<div class="video-container" data-background-image="images/home-video-background-poster.jpg">
-		<video loop autoplay muted>
-			<source src="images/home-video-background.mp4" type="video/mp4">
-		</video>
-	</div>
+	
 
 </div>
 
@@ -459,7 +454,9 @@ $('#snackbar-user-status label').click(function() {
 		query = document.getElementById('intro-keywords-main').value;
 		window.location.href = "course.html?q="+ query;
 	}
-
+	function detailCourse(pram){
+		window.location.href = "detail-course.html?tag="+ pram.id;
+	}
 	// Autocomplete adjustment for homepage
 	if ($('.intro-banner-search-form')[0]) {
 	    setTimeout(function(){ 

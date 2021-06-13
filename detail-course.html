@@ -12,7 +12,7 @@
 ================================================== -->
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/colors/blue.css">
-
+<link rel="stylesheet" href="css/search.css">
 </head>
 <body>
 
@@ -394,6 +394,7 @@
 <script src="js/slick.min.js"></script>
 <script src="js/custom.js"></script>
 <script src="Scripts/DetailCourse.js"></script>
+<script src="Scripts/Search.js"></script>
 
 <!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
 <script>
@@ -418,6 +419,10 @@ $('.copy-url-button').click(function() {
 }); 
 function detailCourse(pram){
 		window.location.href = "detail-course.html?tag="+ pram.id;
+	}
+	function searchResult(){
+		query = document.getElementById('intro-keywords').value;
+		window.location.href = "course.html?q="+ query;
 	}
 </script>
 
