@@ -32,7 +32,7 @@ $(document).ready(function () {
   document.getElementById('keywordfillter').innerHTML = '<span class="keyword"><span class="keyword-remove"></span><span class="keyword-text">'+offer_string.trim()+'</span></span>'
   document.getElementById('keywordfillter').innerHTML += '<span class="keyword"><span class="keyword-remove"></span><span class="keyword-text">'+skill_string.trim()+'</span></span>'
   $.ajax({
-    url: "http://27.78.33.234:8000/api/course-list", //http://27.78.33.234:8000/api/course-list
+    url: "http://127.0.0.1:8000/api/course-list", //http://27.78.33.234:8000/api/course-list
     type: "POST",
     dataType: "json",
     data: {
@@ -199,16 +199,12 @@ function sub_tag() {
         }
         document.getElementById("dropsub").innerHTML +=
           '<li><div class="checkbox">' +
-          '<input type="checkbox" id="chekcbox' +
-          temp +
-          '">' +
-          '<label for="chekcbox' +
-          temp +
+          '<input type="checkbox" value="'+j.count+'"  id="' +j.skill +
+          '" onclick="filterSub(this)">' +
+          '<label for="'+j.skill +
           '"><span class="checkbox-icon"></span>' +
           j.skill +
-          '<span class="nav-tag">' +
-          j.count +
-          "</span></label>" +
+          "</label>" +
           "</div></li>";
         temp++;
       }
@@ -384,7 +380,7 @@ $("#intro-keywords-main").keydown(function () {
 $("#intro-keywords-main").keyup(function () {
  
   $.ajax({
-    url: "http://27.78.33.234:8000/api/course-list",
+    url: "http://127.0.0.1:8000/api/course-list",
     type: "POST",
     dataType: "json",
     data: {

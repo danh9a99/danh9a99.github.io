@@ -291,7 +291,84 @@ $('#snackbar-user-status label').click(function() {
 		window.location.href += '&skill_gain=' + pram.id;
 		
 	}
-	
+	q = window.location.href.split("?q=")[1].split('&offer_by=')[0];
+  	let query_string = '';
+  	if (q != undefined) {
+    	for(var i = 0; i <q.split("%20").length; i++){
+      		query_string += q.split("%20")[i] + ' ';
+    	}
+  	}
+	let a = [];
+	function filterSub(obj){
+		document.getElementById("searchresult").innerHTML  = '';
+		if(obj.checked == true){
+			a.push(obj.id);
+			
+			//console.log(obj.value)
+			gen_filled_course(str_sub(a))
+		}
+		else{
+			console.log(obj.id)	
+			a.splice(a.indexOf(obj.id),1)
+			console.log(a)
+			gen_filled_course(str_sub(a))
+		}
+	}
+	function str_sub(lst){
+		str = ''
+		for (var i = 0; i < lst.length; i++){
+			str += lst[i] + ',';
+		}
+		return str.slice(0, -1);
+	}
+	function gen_filled_course(list_sub){
+		$.ajax({
+				url: "http://127.0.0.1:8000/api/course-list", //http://27.78.33.234:8000/api/course-list
+				type: "POST",
+				dataType: "json",
+				data: {
+					queries: query_string.trim(),
+					filter: list_sub,
+					flag: 1	
+				},
+				success: function (result) {
+					for (var i = 0; i < result.result.courses.length; i++) {
+						document.getElementById("searchresult").innerHTML +=
+						'<a id="' +
+						result.result.courses[i]._source.course_tag +
+						'" onclick="detailCourse(this)" style="cursor:pointer" class="job-listing">' +
+						'<div class="job-listing-details">' +
+						'<div class="job-listing-company-logo">' +
+						'<img src="' +
+						result.result.courses[i]._source.course_image +
+						'" style="width:50px;height:50px;" alt="">' +
+						"</div>" +
+						'<div class="job-listing-description">' +
+						'<h3 class="job-listing-title">' +
+						result.result.courses[i]._source.course_title +
+						"</h3>" +
+						'<div class="job-listing-footer">' +
+						"<ul>" +
+						'<li><i class="icon-material-outline-location-city"></i> ' +
+						result.result.courses[i]._source.offer_by +
+						' <div class="verified-badge" title="Verified Employer" data-tippy-placement="top"></div></li>' +
+						'<li><i class="icon-material-outline-language"></i> ' +
+						result.result.courses[i]._source.language +
+						"</li>" +
+						'<li><i class="icon-material-outline-star-border"></i> ' +
+						result.result.courses[i]._source.rating +
+						"</li>" +
+						'<li><i class="icon-material-outline-person-pin"></i> ' +
+						result.result.courses[i]._source.enrolled +
+						"</li>" +
+						"</ul>" +
+						"<div>" +
+						"</div>" +
+						"</div>";
+					}
+				}
+			})
+	}
 </script>
 
 <!-- Google API & Maps -->
