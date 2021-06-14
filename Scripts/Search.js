@@ -3,6 +3,7 @@ var lst_offer = [];
 var lst_sub = [];
 var lst_search_result = [];
 $(document).ready(function () {
+  $('.loading').show()
   q = window.location.href.split("?q=")[1].split('&offer_by=')[0];
   let query_string = '';
   if (q != undefined) {
@@ -107,6 +108,7 @@ $(document).ready(function () {
       skill_tag();
       offer_tag();
       sub_tag();
+      $('.loading').hide()
     },
   });
 });
@@ -262,6 +264,7 @@ $("#intro-keywords").keyup(function () {
     dataType: "json",
     data: {
       queries: $(this).val(),
+      flag:0
     },
     success: function (data) {
       var currentFocus;
