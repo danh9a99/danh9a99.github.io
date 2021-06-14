@@ -32,11 +32,12 @@ $(document).ready(function () {
   document.getElementById('keywordfillter').innerHTML = '<span class="keyword"><span class="keyword-remove"></span><span class="keyword-text">'+offer_string.trim()+'</span></span>'
   document.getElementById('keywordfillter').innerHTML += '<span class="keyword"><span class="keyword-remove"></span><span class="keyword-text">'+skill_string.trim()+'</span></span>'
   $.ajax({
-    url: "http://127.0.0.1:8000/api/course-list",
+    url: "http://27.78.33.234:8000/api/course-list", //http://27.78.33.234:8000/api/course-list
     type: "POST",
     dataType: "json",
     data: {
       queries: query_string.trim(),
+      flag: 1
     },
     success: function (result) {
       if (result.suggest_word !== result.word_search + " ") {
@@ -383,11 +384,12 @@ $("#intro-keywords-main").keydown(function () {
 $("#intro-keywords-main").keyup(function () {
  
   $.ajax({
-    url: "http://127.0.0.1:8000/api/course-list",
+    url: "http://27.78.33.234:8000/api/course-list",
     type: "POST",
     dataType: "json",
     data: {
       queries: $(this).val(),
+      flag: 0
     },
     success: function (data) {
         setTimeout(() => {  
