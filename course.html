@@ -315,7 +315,12 @@
 			</div>
 			<br>
 			<div id='keywordfillter' class="keywords-list" style="height: auto;">	
-				
+				<span id="offer" class="keyword">
+					
+				</span>
+				<span id="skill" class="keyword">
+					
+				</span>
 			</div>
 			<br>
 			<div id='searchresult' class="listings-container compact-list-layout margin-top-35">
@@ -410,9 +415,16 @@ $('#snackbar-user-status label').click(function() {
 	function filterSkill(pram){
 		
 		window.location.href += '&skill_gain=' + pram.id;
+		if(window.location.href.split('&skill_gain').length != 1){
+			if(window.location.href.split('&skill_gain')[1].split('&').length != 1){
+				window.location.href = window.location.href.split('&skill_gain=')[0] + '&skill_gain=' +pram.id + '&' + window.location.href.split('&')[2];
+			}else{
+				window.location.href = window.location.href.split('&skill_gain=')[0] + '&skill_gain=' +pram.id;
+			}
+		}
 		
 	}
-	q = window.location.href.split("?q=")[1].split('&offer_by=')[0];
+	q = window.location.href.split("?q=")[1].split('&')[0];
   	let query_string = '';
   	if (q != undefined) {
     	for(var i = 0; i <q.split("%20").length; i++){
@@ -429,9 +441,7 @@ $('#snackbar-user-status label').click(function() {
 			gen_filled_course(str_sub(a))
 		}
 		else{
-			console.log(obj.id)	
 			a.splice(a.indexOf(obj.id),1)
-			console.log(a)
 			gen_filled_course(str_sub(a))
 		}
 	}
@@ -443,6 +453,8 @@ $('#snackbar-user-status label').click(function() {
 		return str.slice(0, -1);
 	}
 	function gen_filled_course(list_sub){
+		var s = document.getElementById("skill").innerText;
+		var o = document.getElementById("offer").innerText;
 		$.ajax({
 				url: "http://127.0.0.1:8000/api/course-list", //http://27.78.33.234:8000/api/course-list
 				type: "POST",
@@ -453,43 +465,72 @@ $('#snackbar-user-status label').click(function() {
 					flag: 1	
 				},
 				success: function (result) {
+					
 					for (var i = 0; i < result.result.courses.length; i++) {
-						document.getElementById("searchresult").innerHTML +=
-						'<a id="' +
-						result.result.courses[i]._source.course_tag +
-						'" onclick="detailCourse(this)" style="cursor:pointer" class="job-listing">' +
-						'<div class="job-listing-details">' +
-						'<div class="job-listing-company-logo">' +
-						'<img src="' +
-						result.result.courses[i]._source.course_image +
-						'" style="width:50px;height:50px;" alt="">' +
-						"</div>" +
-						'<div class="job-listing-description">' +
-						'<h3 class="job-listing-title">' +
-						result.result.courses[i]._source.course_title +
-						"</h3>" +
-						'<div class="job-listing-footer">' +
-						"<ul>" +
-						'<li><i class="icon-material-outline-location-city"></i> ' +
-						result.result.courses[i]._source.offer_by +
-						' <div class="verified-badge" title="Verified Employer" data-tippy-placement="top"></div></li>' +
-						'<li><i class="icon-material-outline-language"></i> ' +
-						result.result.courses[i]._source.language +
-						"</li>" +
-						'<li><i class="icon-material-outline-star-border"></i> ' +
-						result.result.courses[i]._source.rating +
-						"</li>" +
-						'<li><i class="icon-material-outline-person-pin"></i> ' +
-						result.result.courses[i]._source.enrolled +
-						"</li>" +
-						"</ul>" +
-						"<div>" +
-						"</div>" +
-						"</div>";
+						if(result.result.courses[i]._source.offer_by==null){
+          					result.result.courses[i]._source.offer_by = 'None'
+        				}
+        				if(result.result.courses[i]._source.skill_gain==null){
+          					result.result.courses[i]._source.skill_gain = 'None'
+        				}
+						if((result.result.courses[i]._source.offer_by.indexOf(o) > -1 || o == '\n\t\t\t\t\t\n\t\t\t\t')
+          				&& (result.result.courses[i]._source.skill_gain.indexOf(s) > -1 || s == '\n\t\t\t\t\t\n\t\t\t\t')){
+							document.getElementById("searchresult").innerHTML +=
+							'<a id="' +
+							result.result.courses[i]._source.course_tag +
+							'" onclick="detailCourse(this)" style="cursor:pointer" class="job-listing">' +
+							'<div class="job-listing-details">' +
+							'<div class="job-listing-company-logo">' +
+							'<img src="' +
+							result.result.courses[i]._source.course_image +
+							'" style="width:50px;height:50px;" alt="">' +
+							"</div>" +
+							'<div class="job-listing-description">' +
+							'<h3 class="job-listing-title">' +
+							result.result.courses[i]._source.course_title +
+							"</h3>" +
+							'<div class="job-listing-footer">' +
+							"<ul>" +
+							'<li><i class="icon-material-outline-location-city"></i> ' +
+							result.result.courses[i]._source.offer_by +
+							' <div class="verified-badge" title="Verified Employer" data-tippy-placement="top"></div></li>' +
+							'<li><i class="icon-material-outline-language"></i> ' +
+							result.result.courses[i]._source.language +
+							"</li>" +
+							'<li><i class="icon-material-outline-star-border"></i> ' +
+							result.result.courses[i]._source.rating +
+							"</li>" +
+							'<li><i class="icon-material-outline-person-pin"></i> ' +
+							result.result.courses[i]._source.enrolled +
+							"</li>" +
+							"</ul>" +
+							"<div>" +
+							"</div>" +
+							"</div>";
+						}
 					}
 				}
 			})
 	}
+
+	$(document).on('click', '.skill-remove', function() {
+		document.getElementById('skill').classList.add('keyword-removed')
+		if(window.location.href.split('&skill_gain')[0].split('&').length != 1 
+		|| window.location.href.split('&skill_gain')[1].split('&').length == 1){
+			window.location.href = window.location.href.split('&skill_gain')[0]
+		}else{
+			window.location.href = window.location.href.split('&skill_gain')[0] + '&offer_by'+ window.location.href.split('&offer_by')[1]
+		}
+	});
+	$(document).on('click', '.offer-remove', function() {
+		document.getElementById('offer').classList.add('keyword-removed')
+		if(window.location.href.split('&offer_by')[0].split('&').length != 1 
+		|| window.location.href.split('&offer_by')[1].split('&').length == 1){
+			window.location.href = window.location.href.split('&offer_by')[0]
+		}else{
+			window.location.href = window.location.href.split('&offer_by')[0] + '&skill_gain'+ window.location.href.split('&skill_gain')[1]
+		}
+	});
 </script>
 
 <!-- Google API & Maps -->

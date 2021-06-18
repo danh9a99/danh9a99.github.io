@@ -4,7 +4,7 @@ var lst_sub = [];
 var lst_search_result = [];
 $(document).ready(function () {
   $('.loading').show()
-  q = window.location.href.split("?q=")[1].split('&offer_by=')[0];
+  q = window.location.href.split("?q=")[1].split('&')[0];
   let query_string = '';
   if (q != undefined) {
     for(var i = 0; i <q.split("%20").length; i++){
@@ -18,7 +18,7 @@ $(document).ready(function () {
       for(var i = 0; i <o.split('&')[0].split("%20").length; i++){
         offer_string += o.split('&')[0].split("%20")[i] + ' ';
         }
-    }    
+    }
   }
   s = window.location.href.split('&skill_gain=')[1];
   let skill_string = '';
@@ -29,9 +29,22 @@ $(document).ready(function () {
         }
     }
   }
+  if(skill_string ==''){
+    $('#skill').hide()
+  }
+  else{
+    $('#skill').show()
+    document.getElementById('skill').innerHTML = '<span class="keyword-remove skill-remove"></span><span class="keyword-text">'+skill_string.trim()+'</span>'
+  }
 
-  document.getElementById('keywordfillter').innerHTML = '<span class="keyword"><span class="keyword-remove"></span><span class="keyword-text">'+offer_string.trim()+'</span></span>'
-  document.getElementById('keywordfillter').innerHTML += '<span class="keyword"><span class="keyword-remove"></span><span class="keyword-text">'+skill_string.trim()+'</span></span>'
+  if(offer_string == ''){
+    $('#offer').hide();
+  }
+  else{
+    $('#offer').show()
+    document.getElementById('offer').innerHTML = '<span class="keyword-remove offer-remove"></span><span class="keyword-text">'+offer_string.trim()+'</span>'
+  }
+  
   $.ajax({
     url: "http://127.0.0.1:8000/api/course-list", //http://27.78.33.234:8000/api/course-list
     type: "POST",
@@ -41,11 +54,11 @@ $(document).ready(function () {
       flag: 1
     },
     success: function (result) {
-      if (result.suggest_word !== result.word_search + " ") {
+      if (result.suggest_word.toLowerCase() !== result.word_search.toLowerCase() + " ") {
         document.getElementById("searchsuggest").innerHTML =
-          '<h4>Are you looking for <strong style="color:blue"><i>' +
+          '<h4>Are you looking for <a id="'+result.suggest_word+'" onclick="changeQueries(this)" style="cursor:pointer;"><strong style="color:blue"><i>' +
           result.suggest_word +
-          "</i></strong></h4>";
+          "</i></strong></a></h4>";
         document.getElementById("searchword").innerHTML =
           '<h4>Search alternatives for <i style="color: blue">' +
           result.word_search +
@@ -255,6 +268,9 @@ function calculate_list(list) {
   return struc;
 }
 
+function changeQueries(pram){
+  window.location.href = window.location.href.split('?q=')[0] + '?q=' + pram.id;
+}
 
 //search-sub
 $("#intro-keywords").keyup(function () {
@@ -479,6 +495,8 @@ $("#intro-keywords-main").keyup(function () {
     },
   });
 });
+
+
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
