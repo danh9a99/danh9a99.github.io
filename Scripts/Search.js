@@ -3,6 +3,8 @@ var lst_offer = [];
 var lst_sub = [];
 var lst_search_result = [];
 $(document).ready(function () {
+ 
+
   $('.loading').show()
   q = window.location.href.split("?q=")[1].split('&')[0];
   let query_string = '';
