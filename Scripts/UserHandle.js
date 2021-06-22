@@ -1,4 +1,4 @@
-
+var lst_cate = []
 $('#user-dropdown').click(function(){
     console.log('cc')
 })
@@ -19,15 +19,29 @@ function logIntoDev(username){
                 'type3': result[0].type3
             }
             sessionStorage.setItem("user", username);
+            sessionStorage.setItem("userid", result[0].userid);
             sessionStorage.setItem('data',JSON.stringify(user_data))
             document.getElementById('username').innerHTML =  result[0].username + '<span>Freelancer</span>'
             location.reload();
         }	
     })
 }
-
 function logout(){
+    $.ajax({
+        url: "http://127.0.0.1:8000/api/getuseraction", //http://27.78.33.234:8000/api/course-list
+        type: "POST",
+        dataType: "json",
+        data: {
+            userid: sessionStorage.getItem('userid'),
+            list_action_time: JSON.stringify(sessionStorage.getItem('user_action_time')),
+            list_action_click: JSON.stringify(sessionStorage.getItem('user_action_click'))
+        },
+        success: function (result) {
+            // do not anything
+        }
+    })
     sessionStorage.removeItem('user')
+    sessionStorage.removeItem('userid')
     sessionStorage.removeItem('data')
     sessionStorage.removeItem('user_action_time')
     sessionStorage.removeItem('user_action_click')
@@ -38,6 +52,7 @@ $(document).ready(function (){
      //logged in
   if(sessionStorage.getItem('user')==undefined){
     $('.user-menu').hide();
+    $('.recommendation').hide();
   }
   else{
     $('.log-in-button').hide();
@@ -45,6 +60,22 @@ $(document).ready(function (){
     //course for user:
     courseForYou(sessionStorage.getItem('user'));
   }
+
+  $.ajax({
+    type: "GET",
+    url: "http://127.0.0.1:8000/api/course?review_option=on",
+    contentType:"application/json",
+    dataType:"json",
+    success: function (data) {
+      for(var i = 0; i < data.length; i++){
+        if(data[i].skill_gain == null){
+            data[i].skill_gain = 'None';
+        }
+        lst_cate.push(data[i].skill_gain.split(","));
+      }
+      cate_tag();
+    }
+  });
 })
 
 function courseForYou(username){
@@ -123,3 +154,69 @@ function gen_star_custom(star){
             break
       }
 }
+
+
+function cate_tag() {
+    struc = calculate_list(lst_cate);
+    lst_temp = [];
+    for (var struc_index = 0; struc_index < struc.length; struc_index++) {
+      lst_temp.push(struc[struc_index].count);
+    }
+    lst_sorted = lst_temp.sort(function (a, b) {
+      return b - a;
+    });
+    temp = 1;
+    for (var i = 0; i < 10; i++) {
+      for (var j of struc) {
+        if (j.count == lst_sorted[i] && j.skill != 'None') {
+          const index = struc.indexOf(j);
+          if (index > -1) {
+            struc.splice(index, 1);
+          }
+          document.getElementById('pop-cate').innerHTML += '<div class="col-xl-3 col-md-6">'+
+                    '<a href="jobs-list-layout-1.html" class="backgroud photo-box small">'+
+                        '<div class="photo-box-content">'+
+                            ' <h3>'+j.skill+'</h3>'+
+                            ' <span>'+j.count+'</span>' +
+                        '</div>' +
+                    '</a>' + 
+                        '</div>'
+          temp++;
+        }
+  
+        if (temp > 8) break;
+      }
+    }
+  }
+
+  
+function calculate_list(list) {
+    var struc = [];
+    for (var i of list) {
+      for (var j = 0; j < i.length; j++) {
+        var index = 0;
+        if (struc.length == 0) {
+          struc.push({
+            skill: i[j],
+            count: 1,
+          });
+        } else {
+          while (true) {
+            if (struc.length == index) {
+              struc.push({
+                skill: i[j],
+                count: 1,
+              });
+              break;
+            } else if (i[j] == struc[index].skill) {
+              struc[index].count += 1;
+              break;
+            }
+            index += 1;
+          }
+        }
+      }
+    }
+    return struc;
+  }
+  

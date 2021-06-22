@@ -21,7 +21,9 @@
   height: 50px;
   animation: spin 1s linear infinite;
 }
-
+.backgroud{
+	background-image:url("https://i0.wp.com/backendnews.net/wp-content/uploads/2021/05/Laptop-Hand-Dark-Sora-Shimazaki-Pexels.jpg?resize=640%2C400&ssl=1")
+}
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
@@ -31,11 +33,11 @@
 <body>
 
 <!-- Wrapper -->
-<div id="wrapper" class="wrapper-with-transparent-header">
+<div id="wrapper">
 
 <!-- Header Container
 ================================================== -->
-<header id="header-container" class="fullwidth transparent-header">
+<header id="header-container" class="fullwidth">
 	
 	<!-- Header -->
 	<div id="header">
@@ -135,7 +137,7 @@
 
 <!-- Intro Banner
 ================================================== -->
-<div class="intro-banner dark-overlay big-padding">
+<div class="intro-banner" >
 	
 	<!-- Transparent Header Spacer -->
 	<div class="transparent-header-spacer"></div>
@@ -196,7 +198,7 @@
 <!-- Content
 ================================================== -->
 <!-- Features Jobs -->
-<div class="section padding-top-65 padding-bottom-75">
+<div class="recommendation section padding-top-65 padding-bottom-25">
 	<div class="container">
 		<div class="row">
 			<div class="col-xl-12">
@@ -221,7 +223,24 @@
 </div>
 <!-- Featured Jobs / End -->
 
+<!-- Popular Job Categories -->
+<div class="section margin-top-65 margin-bottom-30">
+	<div class="container">
+		<div  id='pop-cate' class="row">
 
+			<!-- Section Headline -->
+			<div class="col-xl-12">
+				<div class="section-headline centered margin-top-0 margin-bottom-45">
+					<h3>Top Popular Categories</h3>
+				</div>
+			</div>
+
+		
+
+		</div>
+	</div>
+</div>
+<!-- Features Cities / End -->
 
 
 
@@ -377,9 +396,7 @@
 <script src="js/magnific-popup.min.js"></script>
 <script src="js/slick.min.js"></script>
 <script src="js/custom.js"></script>
-<script src="Scripts/CrawlAPI.js"></script>
-<script src="Scripts/Search.js"></script>
-<script src="Scripts/UserHandle.js"></script>
+
 <!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
 <script>
 // Snackbar for user status switcher
@@ -443,6 +460,8 @@ $('#snackbar-user-status label').click(function() {
 	
 </script>
 
-
+<script src="Scripts/CrawlAPI.js"></script>
+<script src="Scripts/Search.js"></script>
+<script src="Scripts/UserHandle.js"></script>
 </body>
 </html>
