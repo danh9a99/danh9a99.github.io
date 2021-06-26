@@ -4,7 +4,6 @@ var lst_sub = [];
 var lst_search_result = [];
 $(document).ready(function () {
  
-
   $('.loading').show()
   q = window.location.href.split("?q=")[1].split('&')[0];
   let query_string = '';
@@ -286,7 +285,7 @@ $("#intro-keywords").keyup(function () {
     },
     success: function (data) {
       var currentFocus;
-      console.log(data.word_search);
+      console.log(data);
       //Reset keyword nhập vô trước:
       var a,
         b,
