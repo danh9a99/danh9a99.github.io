@@ -464,7 +464,7 @@ $("#intro-keywords-main").keyup(function () {
             }
             $('.loader').hide();
             $('.button.ripple-effect').show();
-         }, 1000);  
+         }, 500);  
         
       document
       .getElementById("intro-keywords-main")
