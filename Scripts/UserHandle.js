@@ -1,4 +1,5 @@
 var lst_cate = []
+var lst_sub_user = []
 $('#user-dropdown').click(function(){
     console.log('cc')
 })
@@ -71,11 +72,17 @@ $(document).ready(function (){
         if(data[i].skill_gain == null){
             data[i].skill_gain = 'None';
         }
+        if(data[i].subtitle == null){
+          data[i].subtitle = 'None'
+        }
         lst_cate.push(data[i].skill_gain.split(","));
+        lst_sub_user.push(data[i].subtitle.split(", "));
       }
       cate_tag();
+      
     }
   });
+  
 })
 
 function courseForYou(username){
@@ -116,7 +123,7 @@ function courseForYou(username){
     })
 }
 
-//search-sub
+
 
 
 
@@ -191,8 +198,34 @@ function cate_tag() {
         if (temp > 8) break;
       }
     }
-  }
+}
 
+function sub_tag_user(){
+  struc = calculate_list(lst_sub);
+  select = document.getElementById("listsub");
+  $("ul.dropdown-menu").attr("id", "dropdown");
+  $("ul.dropdown-menu").attr("style", "max-height: 245px; overflow-y: auto;");
+  temp = 0
+  for (var j of struc) {
+    if (j == null) {
+      continue;
+    }
+    var opt = document.createElement("option");
+    opt.innerHTML = j.skill;
+    select.appendChild(opt);
+    document.getElementById("dropdown").innerHTML +=
+      '<li data-original-index="' +
+      temp +
+      '">' +
+      '<a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">' +
+      '<span class="text">' +
+      j.skill +
+      "</span>" +
+      '<span class="glyphicon glyphicon-ok check-mark"></span>' +
+      "</a></li>";
+      temp++;
+  }
+}
   
 function calculate_list(list) {
     var struc = [];
@@ -227,10 +260,6 @@ function calculate_list(list) {
 //Tính năng Search
 function autocomplete(inp, arr) {
   struc = calculate_list(arr);
-  lst_temp = [];
-  for (var struc_index = 0; struc_index < struc.length; struc_index++) {
-    lst_temp.push(struc[struc_index].count);
-  }
   /*the autocomplete function takes two arguments,
   the text field element and an array of possible autocompleted values:*/
   var currentFocus;
@@ -332,10 +361,13 @@ function autocomplete(inp, arr) {
   });
 }
 
-///*An array containing all the country names in the world:*/
-//var countries = [];
-//for (var i = 0; i < _listCongTy.length; i++) {
-//    countries.push(_listCongTy[i].Text)
-//}
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-autocomplete(document.getElementById("intro-keywords-skill"), lst_cate);
+// autocomplete(document.getElementById("intro-keywords-sub"), lst_sub_user)
+// autocomplete(document.getElementById("intro-keywords-skill"), lst_cate);
+$("#intro-keywords-subtitle").keydown(function () {
+  autocomplete(document.getElementById("intro-keywords-subtitle"), lst_sub_user);
+})
+$("#intro-keywords-skill").keydown(function () {
+  autocomplete(document.getElementById("intro-keywords-skill"), lst_cate);
+})
+

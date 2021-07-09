@@ -272,14 +272,14 @@
 				<!-- Subtitle -->
 				<div class="sidebar-widget">
 					<h3>Subtitles</h3>
-					<select class="selectpicker with-border" multiple>
-						<option>Mustard</option>
-						<option>Ketchup</option>
-						<option>Relish</option>
-						<option>Mayonnaise</option>
-						<option>Tabasco</option>
-						<option>Salsa</option>
-					</select>
+					<div class="keywords-container">
+						<div class="keyword-input-container">
+							<input id='intro-keywords-subtitle' type="text" class="keyword-input" placeholder="Add Subtitle To Learn"/>
+							<button class="keyword-input-button ripple-effect"><i class="icon-material-outline-add"></i></button>
+						</div>
+						<div class="keywords-list"><!-- keywords go here --></div>
+						<div class="clearfix"></div>
+					</div>
 				</div>
 
 				
@@ -494,9 +494,10 @@
 <script src="js/slick.min.js"></script>
 <script src="js/custom.js"></script>
 <!-- <script src="js/pagination.min.js"></script> -->
+<script src="Scripts/UserHandle.js"></script>
 <script src="Scripts/CrawlAPI.js"></script>
 <script src="Scripts/Search.js"></script>
-<script src="Scripts/UserHandle.js"></script>
+
 <!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
 <script>
 // Snackbar for user status switcher
@@ -560,7 +561,6 @@ $('#snackbar-user-status label').click(function() {
 		window.location.href = "course.html?q="+ query;
 	}
 </script>
-
 
 </body>
 </html>

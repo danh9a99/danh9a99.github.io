@@ -22,6 +22,8 @@ $(document).ready(function(){
         dataType:"json",
         success: function (data) {
           gen_course(data)
+          // autocomplete(document.getElementById("intro-keywords-subtitle"), lst_sub_user);
+          // autocomplete(document.getElementById("intro-keywords-skill"), lst_cate);
         }
       });
 });
